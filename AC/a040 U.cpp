@@ -1,5 +1,7 @@
 #include <iostream>
 using namespace std;
+
+
 int rag(int a,int count)
 {
 	int s=1;
