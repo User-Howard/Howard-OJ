@@ -1,38 +1,41 @@
 #include<iostream>
-#include<math.h> 
+#include<vector>
 using namespace std;
 
-bool problemis(bool all[],int a){
-    for(int i=1;i<a;i++){
-        if(all[i]==true){
-            return false;
-        }
-    }
-    return true;
-}
+
 
 int main(void)
-{
-    int a,de[]={0};
-    while(cin>>a){
-        for(int i=0;i<a;i++){
-            cin>>de[i];
-        }
-        bool all[a];
-        for(int i=1;i<a;i++){
-            all[i]=true;
-        }
-        for(int i=0;i<a-1;i++){
-            if(1<=abs(de[i]-de[i+1]) && abs(de[i]-de[i+1])<=a-1){
-                all[abs(de[i]-de[i+1])]=false;
+{    
+    vector< bool > number_l(3000);
+    vector< int > li(3000);
+    int len;
+    while(scanf("%d",&len) != EOF)
+    {
+        for(int i=0;i<len;i++)
+            scanf("%d",&li[i]);
+
+        for(int i=0;i<3000;i++)
+            number_l[i]=true;
+
+        for(int i=0;i<len-1;i++)
+            number_l[abs(li[i]-li[i+1])]=false;
+
+        bool ist=true;
+
+        for(int i=1;i<len;i++)
+            if(number_l[i])
+            {
+                //cout<<i<<endl;
+                ist=false;
+                break;
             }
-        }
-        if(problemis(all,a)){
+        
+        if(ist)
             printf("Jolly\n");
-        }
-        else{
+        else
             printf("Not jolly\n");
-        }
+
     }
+    //cout<<number_l[3];
     return 0;
 }
