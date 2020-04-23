@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-bool solve(string a ,string b){
+bool get_(string a ,string b){
 	bool isd;
 	for(int i=0;i<a.size();i++)
 	{
@@ -32,11 +32,11 @@ int main(void)
 	string str;
 	
 	getline(cin,str);
-	for(int i=0;i<26;i++)
+	for(int i=-26;i<=25;i++)
 	{
-		if(solve(addd(str,i),"Love") || solve(addd(str,i),"love"))
+		if(get_(addd(str,i),"Love") || get_(addd(str,i),"love"))
 		{
-			printf("%d",i);
+			printf("%d",i>=0 ? i : 26+i);
 			return 0;
 		}
 		
