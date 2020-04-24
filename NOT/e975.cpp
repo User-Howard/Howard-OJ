@@ -23,16 +23,38 @@ string addd(string a, int b)
 	char Ans[a.size()];
 	for(int i=0;i<a.size();i++)
 	{
-		Ans[i] = (char)( a[i]+b );
+		
+		if(a[i] == ' ')
+		{
+			Ans[i] = ' ';
+		}
+		
+		
+		else if(65 <= a[i] && a[i] <=90)
+		{
+			Ans[i] = (char)( a[i]+b);
+			if(a[i]+b > 90)
+				Ans[i] -= 26;		
+		}
+		else if(97 <= a[i] && a[i] <=122)
+		{
+			Ans[i] = (char)( a[i]+b);
+			if(a[i]+b > 122)
+				Ans[i] -= 26;			
+			
+		}
+//		cout<<a[i]<<" "<<Ans[i]<<endl;
+			
 	}
 	return Ans;
 }
 int main(void)
 {
 	string str;
-	
+//	cout<<addd("NqxgRgceg" ,24)<<endl;
+//	cout<<"NqxgRgceg"<<endl;
 	getline(cin,str);
-	for(int i=-26;i<=25;i++)
+	for(int i=0;i<=25;i++)
 	{
 		if(get_(addd(str,i),"Love") || get_(addd(str,i),"love"))
 		{
