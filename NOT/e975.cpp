@@ -58,7 +58,7 @@ int main(void)
 	{
 		if(get_(addd(str,i),"Love") || get_(addd(str,i),"love"))
 		{
-			printf("%d",i>=0 ? i : 26+i);
+			printf("%d\n",i);
 			return 0;
 		}
 		
