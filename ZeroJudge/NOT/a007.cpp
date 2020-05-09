@@ -4,7 +4,6 @@
 using namespace std;
 
 bool is_prime(int a){
-
     if(a == 1)
         return 0;
 	else if(a == 2)
@@ -21,36 +20,45 @@ bool is_prime(int a){
 int main(){
 	int a;
 	bool is_sam;
-	vector < int > arr(50000,2147483647);
+	vector < int > arr;
 	arr.push_back(2);
 	
-	for(int i=3;i<2147483647;i+=2)
+	for(int i=3;i<46344;i+=2)
 	{
-		//cout<<i<<endl;
-		for(int j=0;arr[j]<=sqrt(a)+1;j++)
+		is_sam=true;
+		for(int j=0;arr[j]<sqrt(i)+2;j++)
 		{
-			is_sam=false;
-			if(i % arr[i] == 0)
+			if(i % arr[j] == 0)
 			{
-				is_sam=true;
+				is_sam=false;
 				break;
 			}
 
 		}
-		if(! is_sam)	
+		if(is_sam)	
 		{
 			arr.push_back(i);
-			cout<<i<<endl;
+			 cout<<i<<endl;
 		}
 
 	}
 	cout<<arr.size()<<endl;
 	while(scanf("%d",&a)!=EOF)
 	{
-		if(is_prime(a))
-			printf("質數\n");
+		is_sam=true;
+		for(int j=0;arr[j]<sqrt(a)+2;j++)
+		{
+			if(a % arr[j] == 0)
+			{
+				is_sam=false;
+				break;
+			}
+		if(is_sam)
+			printf("1\n");
 		else
-			printf("非質數\n");
+			printf("0\n");
+		}
 	}
 	return 0;
+
 }
