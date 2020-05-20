@@ -58,3 +58,54 @@ def main():
 #     return 0;
 # }
 main()
+
+"""
+xr,yr = 0,0
+count = 0
+pool = 0
+
+
+def de(arr,x,y):
+    global count
+    if(arr[x][y] == 'X'):
+        return 0;
+    else:
+        count+=1
+        arr[x][y] = 'X'
+        for i in [-1,0,1]:
+            for j in [-1,0,1]:
+                if (x+i)>=0 and (y+j)>=0:
+                    try:
+                        de(arr,x+i,y+j)
+                    except:
+                        pass
+
+def solve():
+    global pool, xr, yr, count
+    pool=0
+    maxim=0
+    xr,yr=[int(i) for i in input().split()]
+    arr = [[] for i in range(xr)]
+    for i in range(xr):
+        rest=input()
+        for j in rest:
+            arr[i].append(j)
+    for x in range(xr):
+        for y in range(yr):
+            if(arr[x][y] != 'X'):
+                count=0
+                pool+=1
+                de(arr,x,y)
+                maxim=max(count,maxim)
+    print(str(pool)+" "+str(maxim))
+
+def main():
+    while 1:
+        try:
+            solve()
+        except:
+            break
+
+
+main()
+"""
