@@ -3,7 +3,7 @@
 using namespace std;
 
 
-int X,Y;
+int Xr,Yr;
 char arr[500][500];
 
 
@@ -23,10 +23,10 @@ bool de(int x, int y){
 }
 
 void solve() {
-    cin>>X>>Y;
-    for(int x=0;x<X;x++)
-        for(int y=0;y>Y;y++)
-            cin>>arr[x][y];
+    cin>>Xr>>Yr;
+    for(int i=0;i<Xr;i++)
+        for(int j=0;j>Yr;j++)
+            cin>>arr[i][j];
 
 
 }
