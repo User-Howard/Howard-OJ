@@ -7,8 +7,12 @@ int Xr,Yr;
 char arr[500][500];
 
 
+bool check(int lx, int ly){
+    return;
+}
 bool de(int x, int y){
-
+    // TODO ↓判斷是否在迴圈裡
+    if((x<0)or(y<0)or(1))
     if(arr[x][y] == 'X')
         return 0;
     else{
