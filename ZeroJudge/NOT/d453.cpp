@@ -11,13 +11,13 @@ int doc[102][102];
 bool Run;
 bool puzzle[102][102];
 
-
 void bfs(int i, int j, int NOW){
 	if(puzzle[i][j]||i>=sizeX||i<0||j>=sizeY||j<0||(!Run)) return;
 
-    if(doc[i][j]<NOW && doc[i][j] != 0){
+    if(doc[i][j]>NOW || doc[i][j] == 0){
+        // cout<<NOW<<endl;
 	    doc[i][j]=NOW;
-        if(i == ex and j == ey) Run=false;
+        if((i == ex) and (j == ey)) Run=false;
 	    bfs(i+1, j  , NOW+1);
 	    bfs(i-1, j  , NOW+1);
 	    bfs(i  , j+1, NOW+1);
@@ -29,17 +29,24 @@ void bfs(int i, int j, int NOW){
 
 void solve(){
     cin>>sizeX>>sizeY>>sx>>sy>>ex>>ey;
+    sx--,sy--,ex--,ey--;
     memset(doc, 0, sizeof(doc));
     memset(puzzle, 0, sizeof(puzzle));
 
     for(int i=0;i<sizeX;i++){
         for(int j=0;j<sizeY;j++){
-            cout<<i+j;
             cin>>puzzle[i][j];
         }
     }
     Run=true;
     bfs(sx, sy, 1);
+    cout<<endl;
+    for(int i=0;i<sizeX;i++){
+        for(int j=0;j<sizeY;j++){
+            cout<<doc[i][j]<<"\t";
+        }
+        cout<<endl;
+    }
     cout<<doc[ex][ey]-1<<endl;
 }
 
