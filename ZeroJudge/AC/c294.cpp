@@ -10,9 +10,9 @@ int main(void){
     int li[3];
     cin>>li[0]>>li[1]>>li[2];
     sort(li,li+3);
-    printf("%d %d %d\n",li[0],li[1],li[2]);
+    cout<<li[0]<<" "<<li[1]<<" "<<li[2]<<endl;
     if(li[0]+li[1]<=li[2])
-        cout<<"NO"<<endl;
+        cout<<"No"<<endl;
     else if(li[0]*li[0]+li[1]*li[1]>li[2]*li[2])
         cout<<"Acute"<<endl;
     else if(li[0]*li[0]+li[1]*li[1]==li[2]*li[2])
