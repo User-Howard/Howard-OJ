@@ -23,7 +23,8 @@ void bfs(int i, int j, int NOW){
 
 void solve(){
     cin>>sizeX>>sizeY;
-    memset(doc, 10000, sizeof(doc));
+    doc[0][0]=3;
+    memset(doc, 1, sizeof(doc));
     for(int i=0;i<sizeX;i++){
         for(int j=0;j<sizeY;j++){
             // cin>>puzzle[i][j];
