@@ -14,7 +14,7 @@ int main(void){
 
         check=R[0]-48;
         for(int i=1;i!=8;i++)
-            
+            $1
         
     }
 
