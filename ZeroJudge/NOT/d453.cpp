@@ -18,10 +18,10 @@ void bfs(int i, int j, int NOW){
     if(doc[i][j]<NOW && doc[i][j] != 0){
 	    doc[i][j]=NOW;
         if(i == ex and j == ey) Run=false;
-	    bfs(i+1, j, NOW+1);
-	    bfs(i-1, j, NOW+1);
-	    bfs(i, j+1, NOW+1);
-	    bfs(i, j-1, NOW+1);
+	    bfs(i+1, j  , NOW+1);
+	    bfs(i-1, j  , NOW+1);
+	    bfs(i  , j+1, NOW+1);
+	    bfs(i  , j-1, NOW+1);
     }
     return;
 }
