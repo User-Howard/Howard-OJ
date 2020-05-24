@@ -22,7 +22,7 @@ void de(int x, int y){
 // cout<<"1";
     if(!check(x, y))
         return;
-    if(arr[x][y] == 'X')
+    else if(arr[x][y] == 'X')
         return;
     else{
         rest++;
