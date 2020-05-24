@@ -14,25 +14,36 @@ string RE(string a,int len){
 int main(void){
     ios::sync_with_stdio(false);
     cin.tie(NULL);
-    string re="343433";
-    re[3]='s';
-    cout<<re;
-    string a,b;
-    char Ans[max(a.size(),b.size())+1];
-    int r;
+    
+    string a, b;
+    int Ans[40];
+    int r, noe;
     while(cin>>a>>b){
         a = RE(a,a.size());
         b = RE(b,b.size());
+        for(int i=0;i<40;i++)Ans[i]=0;
         for(int i=0;i<b.size();i++){
             for(int j=0;j<a.size();j++){
-                r = (a[j]-48)*(b[i]-48);
-                Ans[i+j]=char((r%10)+48);
-                Ans[i+j+1]=char((r/10)+48);
+                r = (b[i]-48)*(a[j]-48);
+                Ans[i+j]+=(r);
+                if(Ans[i+j]>=10){
+                    noe=Ans[i+j];
+                    Ans[i+j]=noe%10;
+                    Ans[i+j+1]=noe/10;
+
+                }
             }
         }
-        for(int i=1;i<=max(a.size(),b.size())+1;i++){
-            cout<<Ans[max(a.size(),b.size())+1+i*-1];
+        bool FirstZero=true;
+        if(a=="0" || b=="0"){
+            cout<<"0"<<endl;
+            continue;
         }
+        for(int i=1;i<=40;i++){
+            if(Ans[40+i*-1] != 0) FirstZero=false;
+            if(!FirstZero) cout<<Ans[40+i*-1];
+        }
+        cout<<endl;
     }
     return 0;
 }
