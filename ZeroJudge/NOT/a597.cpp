@@ -1,4 +1,5 @@
 #include<iostream>
+#include<string.h>
 #include<algorithm>
 #define TIMES 500
 using namespace std;
@@ -39,10 +40,10 @@ void de(int x, int y){
 int main(void){
     ios::sync_with_stdio(false);
     cin.tie(NULL);
-    
-    while(limit--){
+
+    while(cin>>Xr>>Yr){
         int maxim=0, pool=0;
-        cin>>Xr>>Yr;
+        memset(arr,true,sizeof(arr));
         for(int i=0;i<Xr;i++)
             for(int j=0;j<Yr;j++){
                 cin>>arr[i][j];
