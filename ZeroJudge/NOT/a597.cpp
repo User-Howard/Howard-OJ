@@ -59,8 +59,8 @@ int main(void){
                 }
             }
         }
-        printf("%d %d\n",pool,maxim);
-    }
+         cout<<pool<<" "<<maxim<<endl;
+   }
 
     return 0;
 }
