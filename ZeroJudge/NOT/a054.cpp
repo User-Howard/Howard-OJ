@@ -11,10 +11,15 @@ int main(void){
     string R;
     while(cin>>R){
         check=0;
+        sum=0;
 
-        check=R[0]-48;
-        for(int i=1;i!=8;i++)
-            
+        check=R[8]-'0';
+        for(int i=0;i<8;i++)
+            sum+=(R[i]-'0')*(8-i);
+        for(int i=0;i<26;i++)
+            if(10 - (sum + li[i]) % 10 == check)
+                cout<<(char)(i+'A');
+        cout<<endl;
         
     }
 
