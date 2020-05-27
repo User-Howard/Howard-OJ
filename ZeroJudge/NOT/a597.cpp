@@ -29,7 +29,7 @@ void de(int x, int y){
         arr[x][y] = 'X';
         de(x+1, y+0);
         de(x-1, y+0);
-        de(x+0, y+1);
+        de(x+0, y+1); 
         de(x+0, y-1);
 
     }
