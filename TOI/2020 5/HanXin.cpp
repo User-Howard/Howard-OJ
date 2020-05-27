@@ -10,13 +10,12 @@ T GCD(T a, T b) {
 
 
 int main(void){
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-
-    int li[3][2];
-    for(int i=0;i<3;i++){
-    	for(int j=0;j<2;j++){
-    		cin>>li[i][j];
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+    	int li[3][2];
+    	for(int i=0;i<3;i++){
+    		for(int j=0;j<2;j++){
+    			cin>>li[i][j];
 		}
 	}
 	
