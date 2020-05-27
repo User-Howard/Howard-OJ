@@ -13,7 +13,7 @@ string RE(string a,int len){
 }
 int main(void){
     ios::sync_with_stdio(false); 
-    cin.tie(NULL);
+    cin.tie(NULL); 
     
     string a, b;
     int Ans[40];
