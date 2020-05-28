@@ -42,13 +42,15 @@ int main(void){
     cin.tie(NULL);
 
     while(cin>>Xr>>Yr){
-        int maxim=0, pool=0;
+    int maxim=0, pool=0;
         memset(arr,true,sizeof(arr));
-        for(int i=0;i<Xr;i++)
+        for(int i=0;i<Xr;i++){
+            string rest;
+            cin>>rest;
             for(int j=0;j<Yr;j++){
-                cin>>arr[i][j];
+                arr[i][j]=rest[j];
             }
-
+        }
         for(int i=0;i<Xr;i++){
             for(int j=0;j<Yr;j++){
                 rest=0;
@@ -60,7 +62,7 @@ int main(void){
             }
         }
          cout<<pool<<" "<<maxim<<endl;
-   }
+    }
 
     return 0;
 }
