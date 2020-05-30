@@ -6,7 +6,6 @@ using namespace std;
 
 int N, t, s;
 vector<int >arr;
-void solve();
 void BFS(int, int);
 int GCD(int, int);
 bool Judge(int);
