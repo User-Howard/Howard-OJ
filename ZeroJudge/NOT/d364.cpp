@@ -38,7 +38,6 @@ void BFS(int x, int Sum){
     }
     for(int i=x;i<s;i++){
         if(Sum+i>s or Judge(i)) break;
-        if(arr.size()==2)cout<<i<<endl;
         arr.push_back(i);
         BFS(i, Sum+i);
         arr.pop_back();
