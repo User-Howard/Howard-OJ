@@ -7,14 +7,14 @@ using namespace std;
 int N, t, s;
 vector<int >arr;
 void solve();
-void BFS(int, int, int);
+void BFS(int, int);
 int GCD(int, int);
 bool Judge(int);
 
 int main(void){
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
-	
+    
     int N;
     cin>>N;
     while(N--){
@@ -24,10 +24,10 @@ int main(void){
 }
 void solve(){
     cin>>s>>t;
-    BFS(1, 0, 1);
+    BFS(1, 0);
 }
-void BFS(int x, int Sum, int Times){
-    if(Times == t+1){
+void BFS(int x, int Sum){
+    if(arr.size() == t){
         if(Sum == s){
             for(int i=0;i<arr.size();i++){
                 cout<<arr[i]<<" ";
@@ -37,9 +37,10 @@ void BFS(int x, int Sum, int Times){
         return;
     }
     for(int i=x;i<s;i++){
-        if(Sum+i>s || Judge(i)) break;
+        if(Sum+i>s or Judge(i)) break;
+        if(arr.size()==2)cout<<i<<endl;
         arr.push_back(i);
-        BFS(i, Sum+i, Times+1);
+        BFS(i, Sum+i);
         arr.pop_back();
     }
 }
@@ -50,7 +51,7 @@ int GCD(int  a, int  b) {
 bool Judge(int a){
     if(arr.size() == 0) return 0;
     for(int i=0;i<arr.size();i++){
-        if(GCD(arr[i],a) != 1)
+        if(GCD(arr[i], a) > 1)
             return 1;
     }
     return 0;
