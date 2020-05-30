@@ -16,15 +16,14 @@ int main(void){
 	cin.tie(NULL);
     
     int N;
-    cin>>N;
-    while(N--){
-        solve();
+    while(cin>>N){
+        for(int Case=1;Case<=N;Case++){
+            cout<<"Case "<<Case<<":"<<endl;
+            cin>>s>>t;
+            BFS(1, 0);
+        }
     }
-	return 0;
-}
-void solve(){
-    cin>>s>>t;
-    BFS(1, 0);
+    return 0;
 }
 void BFS(int x, int Sum){
     if(arr.size() == t){
@@ -36,8 +35,8 @@ void BFS(int x, int Sum){
         }
         return;
     }
-    for(int i=x;i<s;i++){
-        if(Sum+i>s or Judge(i)) break;
+    for(int i=x;i<=s;i++){
+        if(Sum+i>s or Judge(i)) continue;
         arr.push_back(i);
         BFS(i, Sum+i);
         arr.pop_back();
