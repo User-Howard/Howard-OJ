@@ -19,7 +19,7 @@ int main(void){
 
     cin>>N;
     for(int i=0;i<N;i++)
-        arr[i]=1;
+        arr[i]=1; 
 
     for(int r=1;Lastpeople() != 1;r++){
         PASS
