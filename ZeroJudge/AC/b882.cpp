@@ -13,6 +13,6 @@ int main(void){
     if(M%60<10)cout<<"0";
     cout<<M%60<<":";
     if(S%60<10)cout<<"0";
-    cout<<S<<"\n";
+    cout<<S%60<<"\n";
     return 0;
 }
