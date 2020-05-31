@@ -10,11 +10,21 @@ while True:
     arr=[-1 for i in range(n)]
     for i in range(m):
         a,b=[int(i) for i in input().split()]
+        if(arr[b-1]==-1):
+            a,b=b,a
+
         if(arr[a-1]==-1 and arr[b-1]==-1):
             arr[a-1],arr[b-1]=r,r
             r+=1
-        elif(arr[a-1]!=-1):
-            arr[b-1]=arr[a-1]
+        elif(arr[a-1]==-1 and arr[b-1]!=-1):
+            arr[a-1]=arr[b-1]
+        else:
+            rest=arr[b-1]
+            for i in range(len(arr)):
+                if arr[i]==rest:
+                    arr[i]=arr[a-1]
+            r+=1
+        
 
 
     visit=[0 for i in range(n)]
