@@ -37,5 +37,6 @@ while True:
             continue
         visit[i-1]=1;
         S+=1
-    print(S)
+    print("Case {}: {}".format(Case,S))
+    Case+=1
     
