@@ -5,7 +5,7 @@ while True:
     except EOFError:
         break
     if(n==0 and m==0):
-        break;
+        break
     r=1
     arr=[-1 for i in range(n)]
     for i in range(m):
