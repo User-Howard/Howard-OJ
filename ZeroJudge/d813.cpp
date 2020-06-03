@@ -1,7 +1,11 @@
 #include<iostream>
 #include<algorithm>
 #include<stdio.h>
+
+
 int n, m;
+
+
 bool slove(){
     int a, b;
     int arr[n];
