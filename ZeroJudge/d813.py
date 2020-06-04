@@ -4,7 +4,7 @@ while True:
         n,m=[int(i) for i in input().split()]
     except EOFError:
         break
-    if(n==0 and m==0):
+    if(n==0 or m==0):
         break
     r=1
     arr=[-1 for i in range(n)]
@@ -39,4 +39,3 @@ while True:
         S+=1
     print("Case {}: {}".format(Case,S))
     Case+=1
-    
