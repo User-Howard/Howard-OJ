@@ -18,16 +18,16 @@ int main(void){
     }
     int l=0;
     while(l<LEN-1){
-        for(int le=LEN-l;le>=2;le--){
+        for(int le=LEN-l;le>2;le--){
             if(Arithmetic_sequence(l, le) != 0){
-                printf("[%d~%d d%d] ", arr[l], arr[l+le-1], Arithmetic_sequence(l, le));
+                printf("[%d~%d d%d]", arr[l], arr[l+le-1], Arithmetic_sequence(l, le));
                 l+=le;
                 break;
             }
         }
-        for(int le=LEN-l;le>=2;le--){
+        for(int le=LEN-l;le>2;le--){
             if(Proportional_sequence(l, le) != 0){
-                printf("[%d~%d r%d] ", arr[l], arr[l+le-1], Proportional_sequence(l, le));
+                printf("[%d~%d r%d]", arr[l], arr[l+le-1], Proportional_sequence(l, le));
                 l+=le;
                 break;
             }
