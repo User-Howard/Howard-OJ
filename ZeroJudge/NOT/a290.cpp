@@ -15,7 +15,7 @@ int main(void){
         while(scanf("%d %d",&s1, &s2) == 2){
             arr[s2] = s1;
         }
-        
+        cout<<arr[3];
     }
 
     return 0;

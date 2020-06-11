@@ -30,7 +30,7 @@ int main(){
 	}
 	scanf("%d", &val);
     for(int j=0; j<100; j++) {
-        printf("%2d[%3d]  ", j, data[j]);
+        printf("%2d [%3d]  ", j, data[j]);
     }
     printf("%d\n", binary(0, 99));
 
