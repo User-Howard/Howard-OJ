@@ -1,45 +1,38 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
+#include <stdio.h>
+#include <iostream>
 using namespace std;
 
 
-vector<int >arr;
-int N, M;
-int list[30];
-bool f;
-void BFS(int ,int);
+int N;
+char Str[30];
+void dfs(int, int, int);
 
 
-int main(void){
-	ios::sync_with_stdio(false);
-	cin.tie(NULL);
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
 
-	cin>>N>>M;
-	for(int i=0;i<N;i++)
-		cin>>list[i];
-	sort(list,list+N);
-	
-	f=true;
-	BFS(0, 0);
-	if(f)
-		cout<<-1;
-	return 0;
+    while (cin >> N)
+    {
+        dfs(0, 0, 0);
+        cout << endl;
+    }
+    return 0;
 }
-void BFS(int x, int sum){
-	if(sum == M){
-		f=false;
-		for(int i=0;i<arr.size();i++){
-			cout<<arr[i]<<" ";
-		}
-		cout<<endl;
-		return;
-	}
-	for(int i=x;i<N;i++){
-		if(sum+list[i] >M) break;
-		arr.push_back(list[i]);
-		BFS(i+1, sum+list[i]);
-		arr.pop_back();
-	}
-	return;
+void dfs(int now, int L, int R)
+{
+    if (now == N * 2 && R == L)
+    {
+        printf("%s\n", Str);
+        return;
+    }
+    if (L < N){
+        Str[now] = '(';
+        dfs(now + 1, L + 1, R);
+    }
+    if (L > R and L <= N){
+        Str[now] = ')';
+        dfs(now + 1, L, R + 1);
+    }
+    return;
 }
