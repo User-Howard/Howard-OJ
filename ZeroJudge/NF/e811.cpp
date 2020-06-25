@@ -4,8 +4,8 @@ using namespace std;
 
 
 int main(void){
-    int P, Q, R, A0, A1, N;
+    int arr, P, Q, R, A0, A1, N;
     scanf("%d%d%d%d%d%d", &P, &Q, &R, &A0, &A1, &N);
-    
+    for(int i=2;i!=N+1;i++)
 
 }
