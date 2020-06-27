@@ -4,10 +4,14 @@
 using namespace std;
 
 
+int P, Q, a1, a2, R, N;
+int bbvc(int i, int j, int x){
+    if(x==N)
+        return (i+j)%MAXL;
+    else
+        return bbvc(j, (i+j)%MAXL, x+1);
 int main(void){
-    int arr[MAXN], P, Q, R, N;
-    scanf("%d%d%d%d%d%d", &P, &Q, &R, &arr[0], &arr[1], &N);
-    for(int i=2;i!=N+1;i++)
-        arr[i]=(P*arr[i-1] +Q*arr[i-2] +R)%MAXL;
-    printf("%d\n", arr[N]);
+   
+    scanf("%d%d%d%d%d%d", &P, &Q, &R, &a1, &a2, &N);
+    printf("%d\n", bbvc());
 }
