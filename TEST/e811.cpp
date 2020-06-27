@@ -3,22 +3,19 @@
 using namespace std;
 
 
-int Ans, P, Q, a[2], R;
-long long int N;
-int bbvc(int i, int j, long long int x){
-    if(x==N+1)
-        return j;
-    else
-        return bbvc(j, (P*j+Q*i+R)%MAXL, x+1);
-}
+int Ans, P, Q, a[2], R, rest;
 int main(){  
     scanf("%d%d%d%d%d%lld", &P, &Q, &R, &a[0], &a[1], &N);
-    Ans=N<2? a[N] : bbvc(a[0], a[1], 2);
+    for(int i=1;i<N;i++){
+        rest=a[0];
+        a[1]=P*a[1]＋Q*a[0]＋R;
+        a[0]=a[1];
+    }
     if(Ans<10)
         printf("000");
     else if(Ans<100)
         printf("00");
     else if(Ans<1000)
         printf("0");
-    printf("%d\n",Ans);
+    printf("%d\n",a[1]);
 }
