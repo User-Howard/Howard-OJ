@@ -3,7 +3,7 @@
 using namespace std;
 
 
-int P, Q, a[2], R, N;
+int Ans, P, Q, a[2], R, N;
 int bbvc(int i, int j, int x){
     if(x==N+1)
         return j;
@@ -12,6 +12,12 @@ int bbvc(int i, int j, int x){
 }
 int main(){  
     scanf("%d%d%d%d%d%d", &P, &Q, &R, &a[0], &a[1], &N);
-    printf("%d\n", N<2? a[N] : bbvc(a[0], a[1], 2) );
-    
+    Ans=N<2? a[N] : bbvc(a[0], a[1], 2);
+    if(Ans<10)
+        printf("000");
+    else if(Ans<100)
+        printf("00");
+    else if(Ans<1000)
+        printf("0");
+    printf("%d\n",Ans);
 }
