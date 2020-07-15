@@ -29,7 +29,7 @@ int main(void){
         if(dat==0)
 			printf("No estimate for this data set.\n");
 		else
-			printf("%0.6lf\n",sqrt((N*(N-1)/2)*6/dat));
+			printf("%0.6lf\n",sqrt((double)((N*(N-1)/2)*6)/dat));
     }
     return 0;
 }
