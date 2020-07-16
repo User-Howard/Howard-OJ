@@ -1,5 +1,4 @@
 #include<iostream>
-#include<list>
 using namespace std;
 
 
@@ -12,7 +11,5 @@ bool in_(int  x, int arr[], int len){
 }
 
 int main(){
-    int a[2]={1, 2};
-    cout<<in_(1, a, a.size());
     return 0;
 }
