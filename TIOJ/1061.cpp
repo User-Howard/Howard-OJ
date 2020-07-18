@@ -2,6 +2,8 @@
 using namespace std;
 
 
+int playernow = 0;
+char player[2] = {'O', 'X'};
 char arr[3][3];
 char judge(char arr[3][3]){
     for(char player='1';player<='2';player++){
@@ -31,12 +33,28 @@ void solve(char arr[3][3]){
     int idx = find(arr);
     if(idx == -1)
         return;
+    int x=idx/3, y=idx%3;
     
-    
+
 }
 int main(){
+    int clen=0, flen=0;
     for(int i=0;i<9;i++){
         arr[i/3][i%3] = getchar();
+        if(arr[i/3][i%3] == 'O')
+            clen++;
+        else if(arr[i/3][i%3] == 'X')
+            flen++;
+    }
+    
+    if(clen == flen){
+        for(playernow=0;playernow<=1;playernow++){
+
+        }
+    }
+    else{
+        playernow = (bool)(flen>clen);
+
     }
     cout<<(char)judge(arr)<<endl;
     return 0;
