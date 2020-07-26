@@ -6,12 +6,12 @@ class Solution:
     @param newColor: an integer
     @return: the modified image
     """
-    def floodFill(self, image, sr, sc, newColor):
+    def floodFill(self, image, sr, sc, newColor) -> list:
         lenx, leny = len(image), len(image[0])
-        def in_block(x, y):
+        def in_block(x, y) -> bool:
             return (0<=x and x<lenx) and (0<=y and y<leny)
 
-        def dfs(x, y, color):
+        def dfs(x, y, color) -> None:
             if  in_block(x, y) and (image[x][y] == color):
                 image[x][y] = newColor
                 for (nx, ny) in ((x+1, y), (x-1, y), (x, y+1), (x, y-1)):
