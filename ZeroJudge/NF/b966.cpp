@@ -25,11 +25,14 @@ int main(){
     sum = 0;
     sort(arr.begin(), arr.end(), cmp);
     while(not arr.empty()){
-    	int f=arr[0].first, e=arr[0].second;
+    	int f=arr.front().first, e=arr.front().second;
+		arr.erase(arr.begin(), arr.begin()+1);
+		
     	sum+=e-f;
     	while(not arr.empty()){
-			if(arr.front().first<e){
-    			sum+=arr.front().first-e;
+			if(arr.front().first<=e){
+				if(arr.front().second>e)
+    				sum+=arr.front().second-e;
     			arr.erase(arr.begin(), arr.begin()+1);
 			}
 			else
