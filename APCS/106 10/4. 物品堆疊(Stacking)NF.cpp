@@ -11,7 +11,7 @@ struct OBJ{
 
 
 bool cmp(struct OBJ a, struct OBJ b){
-    return a.w*b.f > b.w*a.f;
+    return a.w*b.f < b.w*a.f;
 }
 int main() {
     ios::sync_with_stdio(false);
@@ -25,8 +25,14 @@ int main() {
         cin>>arr[i].f;
     }
     sort(arr, arr+N, cmp);
+    int ret=0;
     for(int i=0;i<N;i++){
-        // PASS
+        int bigf=0;
+        for(int j=0;j<i;j++){
+            bigf+=arr[j].w;
+        }
+        ret+=bigf*arr[i].f;
     }
+    cout<<ret<<endl;
 	return 0;
 }
