@@ -5,7 +5,13 @@ using namespace std;
 int score = 0, f=0;
 bool board[5];
 string info[9][5];
-
+/*
+board[0] -> 本壘
+board[1] -> 一壘
+board[2] -> 二壘
+board[3] -> 三壘
+board[4] 用來計算得分
+*/
 void judge(){
     if(board[4] == 1){
         score++;
