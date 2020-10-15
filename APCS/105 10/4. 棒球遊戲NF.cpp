@@ -27,6 +27,7 @@ void runover(int x){
         board[0] = 0;
         judge();
     }
+    return;
 }
 int main(){
     ios::sync_with_stdio(false);
@@ -48,11 +49,6 @@ int main(){
     cin>>b;
     for(int R=0;R<5;R++){
         for(int player = 0;player<9;player++){
-            if(b == 0){
-                cout<<score<<endl;
-                return 0;
-            }
-
             if(info[player][R] == "##")
                 continue;
 
@@ -69,16 +65,17 @@ int main(){
                 runover(4);
             }
             else{
+                f++;
                 b--;
                 if(f == 3){
                     fill(board, board+5, 0);
                     f=0;
                 }
-                else
-                    f++;
+                if(b == 0){
+                    cout<<score<<endl;
+                    return 0;
+                }
             }
         }
     }
-
-    return 0;
 }
