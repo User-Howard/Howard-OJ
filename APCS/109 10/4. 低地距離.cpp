@@ -1,15 +1,27 @@
 #include<bits/stdc++.h>
-usong namespace std;
+using namespace std;
 
 
 int main(){
-    long int N;
+    int N;
+    long int sum = 0;
     int arr[(int )2e5];
-    short int conc[(int )ie5];
-    fill(conc, conc+N, -1);
-    for(int i=0;i<n;i++){
+    int walk[(int )1e5];
+    cin>>N;
+    for(int i=0;i<2*N;i++){
         cin>>arr[i];
-
     }
+    for(int i=0;i<2*N;i++){
+        if(walk[arr[i]] == 0){
+            for(int j=1;i+j<2*N;j++){
+                if(arr[i+j] == arr[i])
+                    break;
+                if(arr[i+j] < arr[i])
+                    sum++;
+            }
+            walk[arr[i]] = 1;
+        }
+    }
+    cout<<sum<<endl;
     return 0;
 }
