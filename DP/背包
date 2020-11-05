@@ -9,15 +9,16 @@ struct E{
 } arr[102];
 int dp[102];
 int f(int x){
-    if(x<=0)
-        return 0;
-        /*
+
     if(dp[x] > 0)
         return dp[x];
-        */
+
     int q = -INF;
     for(int i=0;i<N;i++){
-        q = max(q, f(x - arr[i].W) + arr[i].V);
+        if(x > arr[i].W)
+            q = max(q, f(x - arr[i].W) + arr[i].V);
+        else if(x == arr[i].W)
+            q = max(q, arr[i].V);
     }
     dp[x] = q;
     return q;
