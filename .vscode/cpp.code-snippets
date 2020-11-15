@@ -1,0 +1,17 @@
+{
+	"C++": {
+		"prefix": "stp",
+		"body": [
+			"#include<iostream>",
+			"#define FOR(i, x) for(int i=0;i<x;i++)",
+			"using namespace std;\n\n",
+			"int main(void){",
+			"\tios::sync_with_stdio(false);",
+			"\tcin.tie(NULL);\n",
+			"\t$1",
+			"\treturn 0;",
+			"}"
+		],
+		"description": "程式碼片段說明"
+	}
+}
