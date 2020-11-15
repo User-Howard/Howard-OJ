@@ -8,11 +8,11 @@ using namespace std;
 int N, M;
 int dp[MSIZE+2];
 int light(int x){
-    
+
 }
 int main(void){
     ios::sync_with_stdio(false);
     cin.tie(NULL);
-
+    
     return 0;
 }
