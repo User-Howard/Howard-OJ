@@ -2,8 +2,9 @@
 #include<vector>
 using namespace std;
 
-int N, K, P;
+int N, K, P, person;
 vector<int >arr;
+vector<int >people;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
@@ -14,7 +15,7 @@ int main(){
 		arr.push_back(temp);
 	}
 	
-	while(cin>>){
+	while(cin>>person){
 		
 	}
     return 0;
