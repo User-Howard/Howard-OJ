@@ -16,7 +16,7 @@ int main(){
 	}
 	
 	while(cin>>person){
-		
+		people.
 	}
     return 0;
 }
