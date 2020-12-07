@@ -4,7 +4,7 @@ using namespace std;
 
 
 struct E{
-    int num=1;
+    int num=1; //init
     char c;
 };
 vector<E > restring(string& S){
