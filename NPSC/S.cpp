@@ -18,6 +18,5 @@ vector<E > restring(string& S){
 }
 int main(){
     string S="1";
-	
     return 0;
 }
