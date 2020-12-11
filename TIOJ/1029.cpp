@@ -10,7 +10,7 @@ int nums[MAXN];
 int prefix[MAXN];
 int dp[MAXN][MAXN];
 int The_sum_of(int l, int r){
-    return -1;
+    return prefix[r-1]-prefix[l-1];
 }
 int Game(int l, int r){
     if(dp[l][r]!=-INF){
@@ -25,7 +25,9 @@ int main(){
     memset(prefix, 0, sizeof(prefix));
     for(int i=0;i<N;i++){
         cin>>nums[i];
+        prefix[i+1] = nums[i]+prefix[i];
     }
+    // 在Left==Right時, dp[l][r] 相當於 nums[l]
     for(int i=0;i<N;i++){
         dp[i][i] = nums[i];
     }
