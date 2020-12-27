@@ -3,7 +3,7 @@
 using namespace std;
 
 // N<=100000
-// 1. why `sum` runs in O(logN)?
+// 1. why 'sum' runs in O(logN)?
 // 2. simplify our segment tree
 // 3. how to perform `add` in bottom-up?
 // 4. solve this problem with divide&conquer
