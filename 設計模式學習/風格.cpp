@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-using namespace std;
 
 // N<=100000
 // 1. why 'sum' runs in O(logN)?
@@ -8,7 +7,7 @@ using namespace std;
 // 3. how to perform `add` in bottom-up?
 // 4. solve this problem with divide&conquer
 
-vector<int> SUM;
+std::vector<int> SUM;
 
 void init(int u, int lb, int rb){
     while (u >= (int)SUM.size()) SUM.push_back(0);
@@ -45,16 +44,16 @@ void add(int u, int i, int x, int lb, int rb) {
 }
 
 int main() {
-    cin.tie(NULL);
-    ios::sync_with_stdio(false);
+    std::cin.tie(NULL);
+    std::ios::sync_with_stdio(false);
     int n;
-    cin >> n;
+    std::cin >> n;
     //vector<int> t(n);
     init(1,0,n-1);
     long long answer = 0;
     for(int i = 0; i < 2*n; i++) {
         int num;
-        cin >> num;
+        std::cin >> num;
         num--;
         int count = 0;
         if(0 <= num-1) count = sum(1, 0, num-1, 0, n-1);
@@ -68,7 +67,7 @@ int main() {
         //else answer -= count;
         
     }
-    cout << answer << '\n';
+    std::cout << answer << '\n';
     return 0;
 }
 
