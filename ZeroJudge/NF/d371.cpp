@@ -1,42 +1,49 @@
 #include<iostream>
-#include<string.h>
-#define MAX_N 100000000
-using namespace std;
+#include<algorithm>
+#include<vector>
+#include<array>
+#include<cmath>
 
 
-int prime[MAX_N];
-bool is_prime[MAX_N+1];
+int N;
+const int MAX_N = pow(2, 16)+2;
+struct node;
+std::array<int, MAX_N>nums;
+std::vector<node> arr;
+void insert_to_node();
+void conbine();
+bool compare_node(const node, const node);
 
-int SETX(int n){
-    int r=0;
 
-    memset(is_prime, 1, sizeof(is_prime));
-    is_prime[0] = is_prime[1] = false;
-    for(int i=2;i*i<=n;i++){
-        if(is_prime[i]){
-            prime[r++]=i;
-            for(int j=i*2;j<=n;j+=i){
-                is_prime[j]=false;
-            }
-        }
-    }
-    return r;
+struct node {
+    int val=0;
+    int count=0;
+    node* right=NULL;
+    node* left= NULL;
+};
+bool compare_node(const node a, const node b) {
+    return a.val < b.val;
 }
 int main(void){
-    int len=SETX(100000000);
-
-    int N1, N2, sum;
-    while(cin>>N1>>N2){
-        sum=0;
-        for(int i=N1;i<=N2;i++){
-            if(is_prime[i])
-                sum++;
-        }
-        cout<<sum<<endl;
+    std::cin>>N;
+    for (int i=0;i<N;++i) {
+        std::cin>>nums[i];
+        node new_node;
+        new_node.val=new_node.count=nums[i];
+        arr.push_back(new_node);
     }
-    // for(int i=0;i<len;i++){
-    //     cout<<prime[i]<<" ";
-    // }
-    cout<<"\n";
+    while (arr.size()) {
+        sort(arr.begin(), arr.end(), compare_node);
+        for(auto i:arr){
+            std::cout<<i.val<<' ';
+        }
+    }
     return 0;
 }
+/*
+#input::
+5
+16 8 8 4 4
+#ouput::
+88
+*/
