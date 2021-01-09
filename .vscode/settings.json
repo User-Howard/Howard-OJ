@@ -3,6 +3,7 @@
         "xiosbase": "cpp",
         "cstddef": "cpp",
         "cmath": "cpp",
-        "array": "cpp"
+        "array": "cpp",
+        "algorithm": "cpp"
     }
 }
