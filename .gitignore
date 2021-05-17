@@ -1,8 +1,0 @@
-# 
-in
-out
-.gitignore
-*.out
-*.exe
-/.vs/
-/.vscode/
