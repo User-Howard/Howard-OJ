@@ -56,3 +56,5 @@ dkms.conf
 # 
 WORKING_AREA
 in
+.vs
+.vscode
