@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "xiosbase": "cpp",
-        "cstddef": "cpp",
-        "cmath": "cpp",
-        "array": "cpp",
-        "algorithm": "cpp"
-    }
-}
