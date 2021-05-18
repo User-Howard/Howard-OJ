@@ -1,23 +1,23 @@
 #include<iostream>
-#include<cmath>
+#include<algorithm>
 using namespace std;
 
 
-int main(void) {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
 
+const int MAX_N = 1e2+2;
+int main(){
     int N, D;
-    int count = 0, ans = 0;
-    cin >> N >> D;
-    while (N--) {
-        int a, b, c;
-        cin >> a >> b >> c;
-        if (max(a, max(b, c)) - min(a, min(b, c)) >= D) {
-            ans += (a + b + c) / 3;
-            ++count;
+    int arr[MAX_N][3];
+    cin>>N>>D;
+    for(int i=0;i<N;i++)
+        for(int j=0;j<3;j++)
+            cin>>arr[i][j];
+    int count=0, money=0;
+    for(int i=0;i<N;i++)
+        if(max(max(arr[i][0], arr[i][1]), arr[i][2])-min(min(arr[i][0], arr[i][1]), arr[i][2])>=D){
+            count++;
+            money+=(arr[i][0]+arr[i][1]+arr[i][2])/3;
         }
-    }
-    cout << count << ' ' << ans << endl;
+    cout<<count<<' '<<money<<endl;
     return 0;
 }
