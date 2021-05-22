@@ -1,38 +1,37 @@
-#include <stdio.h>
-#include <iostream>
+#include<iostream>
+#include<algorithm>
 using namespace std;
 
 
-int N;
-char Str[30];
-void dfs(int, int, int);
-
-
-int main(){
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-
-    while (cin >> N)
-    {
-        dfs(0, 0, 0);
-        cout << endl;
+int N, M, cnt=0;
+int arr [33];
+int output[33];
+void find(int elm, int last, int d){
+    for (int i = elm;i < N;i++) {
+        if(last-arr[i]<0)
+            break;
+        output[d] = arr[i];
+        if(last-arr[i]==0){
+            cnt++;
+            for (int i = 0;i <= d;i++)
+                cout << output [i] << ' ';
+            cout << '\n';
+        }
+        else{
+            find(i+1, last-arr[i], d+1);
+        }
     }
-    return 0;
 }
-void dfs(int now, int L, int R)
-{
-    if (now == N * 2 && R == L)
-    {
-        printf("%s\n", Str);
-        return;
-    }
-    if (L < N){
-        Str[now] = '(';
-        dfs(now + 1, L + 1, R);
-    }
-    if (L > R and L <= N){
-        Str[now] = ')';
-        dfs(now + 1, L, R + 1);
-    }
-    return;
+int main() {
+	cin>>N>>M;
+    for(int i=0;i<N;i++)
+        cin>>arr[i];
+    sort(arr, arr+N);
+    find(0, M, 0);
+    if(cnt==0)
+        cout<<-1<<'\n';
+	return 0;
 }
+/*
+
+*/
