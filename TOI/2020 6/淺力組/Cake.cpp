@@ -14,7 +14,7 @@ priority_queue<pii, vector<pii>, greater<pii> >pq;
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-	cin>>N>>K;
+    cin>>N>>K;
     for(int i=0;i<N;i++)
         cin>>nums[i];
     for(int i=1;i<N;i++)
