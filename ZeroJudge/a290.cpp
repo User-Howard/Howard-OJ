@@ -1,42 +1,35 @@
-#include<iostream>
-#include<set>
-#include<stdio.h>
+#include <iostream>
+#include <queue>
+#include <vector>
 using namespace std;
 
 
-int N, M, s1, s2, start, goal;
-set<int >arr[802];
-int visited[802];
-bool dfs(int );
-
-
-int main(void){
-    while(scanf("%d %d", &N, &M) == 2){
-        for(int i=0;i<N;i++){
-            arr[i].clear();
-            visited[i]=0;
-        }
-        for(int i=0;i<M;i++){
-            scanf("%d %d", &s1, &s2);
-            arr[s1].insert(s2);
-        }
-
-        scanf("%d %d", &start, &goal);
-        if(dfs(start) == 1){
-            puts("Yes!!!\n");
-        }
-        else{
-            puts("No!!!\n");
-        }
+int N, M;
+vector<int> G[800];
+bool bfs(int x, int n){
+    vector<bool>vis(N);
+    queue<int>q;q.push(x);vis[x]=1;
+    while(!q.empty()){
+        int v=q.front();q.pop();
+        if(v==n) return true;
+        for(int i:G[v])
+            if(!vis[i]) q.push(i), vis[i]=1;
     }
-
-    return 0;
+    return false;
 }
-bool dfs(int N){
-    visited[N] = 1;
-    for(set<int>::iterator it=arr[N].begin(); it!=arr[N].end(); ++it){
-        if(visited[*it] != 1 and (*it == goal || dfs(*it)))
-            return 1;
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int A, B;
+    while(cin >> N >> M){
+        for(int i=0;i<N;i++)
+            G[i].clear();
+        for(int i=0, a, b;i<M;i++){
+            cin >> a >> b;
+            G[a-1].push_back(b-1);
+        }
+        cin >> A >> B;
+        cout << (M!=0&&bfs(A-1, B-1) ? "Yes!!!" : "No!!!") << '\n';
     }
     return 0;
 }
