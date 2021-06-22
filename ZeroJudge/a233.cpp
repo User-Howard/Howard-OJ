@@ -1,22 +1,21 @@
-#include<iostream>
-#include<algorithm>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 
-int main(void){
+int N;
+vector<int>nums;
+int main(void) {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
-
-    int len;
-    cin>>len;
-    int arr[len]={};
-    
-    for(int i=0;i<len;++i)
-        cin>>arr[i];
-    sort(arr,arr+len);
-    for(int i=0;i<len;++i)
-        cout<<arr[i]<<" ";
-    cout<<"\n";
-    
+    cin >> N;
+    nums.resize(N);
+    for(int i=0;i<N;i++)
+        cin >> nums[i];
+    sort(nums.begin(),nums.end());
+    for(int i=0;i<N;i++)
+        cout << nums[i] << ' ';
+    cout << '\n';
     return 0;
 }
