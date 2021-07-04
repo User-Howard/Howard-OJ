@@ -29,9 +29,6 @@ void solve(){
         else
             *lower_bound(lis.begin(), lis.end(), i.h) = i.h;
     }
-    for(int i:lis)
-        cout << i << ' ';
-    cout << '\n';
     cout << lis.size() << '\n';
 }
 int main(){
