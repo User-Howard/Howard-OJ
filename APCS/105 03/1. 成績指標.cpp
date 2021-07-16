@@ -1,42 +1,28 @@
-#include<stdio.h>
-#include<algorithm>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 
 int main(){
-    int N, arr[22];
-    scanf("%d", &N);
-    for(int i=0;i<N;i++){
-        scanf("%d", &arr[i]);
-    }
-    sort(arr, arr+N);
-    for(int i=0;i<N;i++)
-        printf("%d ", arr[i]);
-    puts("");
-    int i, n;
-    if(arr[0]>=60)
-        puts("best case");
-    else{
-        n=0;
-        for(i=0;i<N;i++){
-            if(arr[i]<60){
-                n=max(n, arr[i]);
-            }
-        }
-        printf("%d\n", n);
-    }
-
-    if(arr[N-1]<60)
-        puts("worst case");
-    else{
-        n=100;
-        for(i=N-1;i>=0;i--){
-            if(60<=arr[i]){
-                n=min(n, arr[i]);
-            }
-        }
-        printf("%d\n", n);
-    }
-
+    int N;
+    vector<int> nums;
+    cin >> N;
+    nums.resize(N);
+    for(int i=0;i<N;++i)
+        cin >> nums[i];
+    sort(nums.begin(), nums.end());
+    for(int i=0;i<N;++i)
+        cout << nums[i] << ' ';
+    cout << endl;
+    auto it = lower_bound(nums.begin(), nums.end(), 60);
+    if(it == nums.begin())
+        cout << "best case" << endl;
+    else
+        cout << *(it-1) << endl;
+    if(it == nums.end())
+        cout << "worst case" << endl;
+    else
+        cout << *(it) << endl;
     return 0;
 }
