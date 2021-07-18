@@ -1,37 +1,31 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <functional>
+#include <algorithm>
+#include <vector>
 using namespace std;
 
 
-int main(void){
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
 
-    int N, M, S;
-    int arr[22];
-    cin>>N>>M;
-    S=0;
-    for(int i=0;i<N;i++){
-        int r, maxnum=-1;
-        for(int j=0;j<M;j++){
-            cin>>r;
-            if(r>maxnum)
-                maxnum = r;
-        }
-        arr[i] = maxnum;
-        S+=maxnum;
+int main(){
+    int N, M;
+    cin >> N >> M;
+    vector<vector<int> >nums(N, vector<int>(M, 0));
+    for(int i=0;i<N;++i){
+        for(int j=0;j<M;++j)
+            cin >> nums[i][j];
+        sort(nums[i].begin(), nums[i].end(), greater<int>());
     }
-    cout<<S<<endl;
-    bool any_cout = 0;
-    for(int i=0;i<N;i++){
-        if(S % arr[i] == 0){
-            any_cout = 1;
-            cout<<arr[i]<<' ';
+    int ans = 0, cnt = 0;
+    for(int i=0;i<N;++i)
+        ans += nums[i][0];
+    cout << ans << '\n';
+    for(int i=0;i<N;++i){
+        if(ans%nums[i][0] == 0){
+            cout << nums[i][0] << ' ';
+            ++cnt;
         }
     }
-    if(!any_cout)
-        cout<<-1<<endl;
-    else
-        cout<<endl;
-
+    if(cnt == 0)
+        cout << -1 << '\n';
     return 0;
 }
