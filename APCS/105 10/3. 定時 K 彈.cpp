@@ -15,6 +15,6 @@ int main(){
         point = (point+M-1)%arr.size();
         arr.erase(arr.begin()+point);
     }
-    cout<<arr[(point)%arr.size()]<<endl;
+    cout << arr[(point)%arr.size()] << endl;
     return 0;
 }
