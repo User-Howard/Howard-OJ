@@ -26,6 +26,6 @@ int main(){
         }
     }
     if(cnt == 0)
-        cout << -1 << '\n';
+        cout << -1 << '\n'; 
     return 0;
 }
