@@ -33,7 +33,7 @@ int main(){
     cout << R << ' ' << C << '\n';
     for(int i=0;i<R;++i){
         for(int j=0;j<C;++j)
-            cout << nums[i][j] << ' ';
+            cout << nums[i][j] << ' '; 
         cout << endl;
     }
     return 0;
