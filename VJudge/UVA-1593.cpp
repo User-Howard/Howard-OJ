@@ -9,7 +9,7 @@ int main(){
     int ml;
     string line, word;
     vector<vector<string> > T;
-    while(getline(cin, line) && line != ""){
+    while(getline(cin, line)){
         T.push_back(vector<string>());
         stringstream ss(line);
         int pointer = 0;
