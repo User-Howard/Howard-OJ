@@ -30,7 +30,10 @@ bool is_correct(string &s){
 int main(){
     int T;
     string S;
-    getline(cin, S);
-    cout << is_correct(S) << "<-\\\n";
+    cin >> T;getchar();
+    while(T--){
+        getline(cin, S);
+        cout << (is_correct(S)? "Yes" : "No") << '\n';
+    }
     return 0;
 }
