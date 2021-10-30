@@ -13,20 +13,19 @@ string int_to_string(int x, int len=3){
     return s;
 }
 void print_table(vector<set<int> >&Table){
-    set<int>printed;
+    set<int> printed;
     cout << "===== s =====\n";
     for(int n=0;n<Table.size();++n){
         cout << "[" << int_to_string(n) << "]:";
-        for(set<int>::iterator i =Table[n].begin();i!=Table[n].end();++i){
+        for(set<int>::iterator i =Table[n].begin();i!=Table[n].end();++i)
             cout << *i << " -> ";
-        }
         cout << "NULL\n";
     }
     cout << "===== e =====\n";
     return;
 }
 void solve(int K, int M){
-    vector<set<int> >hash_table(M);
+    vector<set<int> > hash_table(M);
     while(K--){
         int a, b;
         cin >> a;
