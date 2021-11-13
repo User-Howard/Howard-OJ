@@ -15,7 +15,7 @@ int main(){
     for(int i=0;i<N;++i)
         cout << nums[i] << ' ';
     cout << endl;
-    auto it = lower_bound(nums.begin(), nums.end(), 60);
+    vector<int>::iterator it = lower_bound(nums.begin(), nums.end(), 60);
     if(it == nums.begin())
         cout << "best case" << endl;
     else
