@@ -16,26 +16,26 @@ int main(){
     while(cin>>N && N){
         switch (N){
         case -2:
-            while(max_ele.size() && !ump[max_ele.top()])
+            while(!max_ele.empty() && !ump[max_ele.top()])
                 max_ele.pop();
-            
-            cout << max_ele.top() << ' ';
-            --ump[max_ele.top()];
-            max_ele.pop();
+            if(!max_ele.empty()){
+                cout << max_ele.top() << ' ';
+                --ump[max_ele.top()];
+                max_ele.pop();
+            }
             break;
         case -1:
-            while(min_ele.size() && !ump[min_ele.top()])
+            while(!min_ele.empty() && !ump[min_ele.top()])
                 min_ele.pop();
-            
-            cout << min_ele.top() << ' ';
-            --ump[min_ele.top()];
-            min_ele.pop();
+            if(!min_ele.empty()){
+                cout << min_ele.top() << ' ';
+                --ump[min_ele.top()];
+                min_ele.pop();
+            }
             break;
         default:
             min_ele.push(N);
             max_ele.push(N);
-            if(ump.find(N) == ump.end())
-                ump[N] = 0;
             ++ump[N];
             break;
         }
