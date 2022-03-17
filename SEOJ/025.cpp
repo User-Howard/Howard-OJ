@@ -20,30 +20,30 @@ int main(){
     }
     while(M--){
         string s;
-        int x, y;
+        int s_i, s_j;
         cin >> s;
         if(s == "ADD"){
-            cin >> x >> y;
-            chain[last_person[x]].nxt = y;
-            chain[y].nxt = INF;
-            last_person[x] = y;
+            cin >> s_i >> s_j;
+            chain[last_person[s_i]].nxt = s_j;
+            chain[s_j].nxt = INF;
+            last_person[s_i] = s_j;
         }
         else if(s == "LEAVE"){
-            cin >> x;
-            if(chain[MAX_P + x].nxt == INF)
-                cout << "queue " << x << " is empty!" << '\n';
+            cin >> s_i;
+            if(chain[MAX_P + s_i].nxt == INF)
+                cout << "queue " << s_i << " is empty!" << '\n';
             else{
-                chain[MAX_P + x].nxt = chain[chain[MAX_P + x].nxt].nxt;
-                if(chain[MAX_P + x].nxt == INF)
-                    last_person[x] = MAX_P + x;
+                chain[MAX_P + s_i].nxt = chain[chain[MAX_P + s_i].nxt].nxt;
+                if(chain[MAX_P + s_i].nxt == INF)
+                    last_person[s_i] = MAX_P + s_i;
             }
         }
         else if(s == "JOIN"){
-            cin >> x >> y;
-            chain[last_person[y]].nxt = chain[MAX_P + x].nxt;
-            chain[MAX_P + x].nxt = INF;
-            last_person[y] = last_person[x];
-            last_person[x] = MAX_P + x;
+            cin >> s_i >> s_j;
+            chain[last_person[s_j]].nxt = chain[MAX_P + s_i].nxt;
+            chain[MAX_P + s_i].nxt = INF;
+            last_person[s_j] = last_person[s_i];
+            last_person[s_i] = MAX_P + s_i;
         }
     }
     for(int i=1;i<=N;++i){
