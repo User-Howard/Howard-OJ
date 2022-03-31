@@ -77,5 +77,5 @@ int main(){
         if(!solved)
             cout << "No solution." << '\n';
     }
-    return 0;
+    return 0; 
 }
