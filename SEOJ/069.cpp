@@ -20,12 +20,10 @@ int f(int t){
     for(int i:horse){
         while(p < N and i <= C[p])++p;
         if(p < N and i > C[p++]){
-            // cout << i << '\t' << C[p-1] << '\n';
             ++cnt;
         }
         else break;
     }
-    // cout << "Call f(" << t << ")\t: " << cnt << '\n';
     return cnt;
 }
 int binary_search(int l, int r){ // (]
@@ -36,24 +34,6 @@ int binary_search(int l, int r){ // (]
     else return binary_search(mid, r);
 }
 int main(){
-    // A.push_back(7);
-    // A.push_back(7);
-    // A.push_back(3);
-    // A.push_back(1);
-
-    // B.push_back(1);
-    // B.push_back(1);
-    // B.push_back(1);
-    // B.push_back(1);
-
-    // C.push_back(9);
-    // C.push_back(7);
-    // C.push_back(7);
-    // C.push_back(3);
-
-    // N = 4;
-    // K = 2;
-    // cout << f(1) << '\n';
     int T;
     cin >> T;
     while(T--){
@@ -66,15 +46,6 @@ int main(){
         for(int i=0;i<N;++i)
             cin >> C[i];
         sort(C.begin(), C.end(), greater<int>());
-        // for(int i=0;i<=(int)1e9;++i){
-        //     if(f(i) >= K){
-        //         cout << i << '\n';
-        //         break;
-        //     }
-        //     else if(i==(int)1e9)
-        //         cout << -1 << '\n';
-        // }
-            
         int result = binary_search(-1, INF);
         if(result == INF)
             cout << -1 << '\n';
