@@ -4,8 +4,8 @@ using namespace std;
 
 
 struct InksTemp{
-    int step, x, y;
-    int color;
+    uint8_t step, x, y;
+    uint8_t color;
     InksTemp(int step_, int color_, int x_, int y_){
         step = step_;
         color = color_;
@@ -64,6 +64,10 @@ int main(){
                 cout << 0 << '\n';
             continue;
         }
+        else if(color_to_int(c) - r > 0){
+            cout << 0 << '\n';
+            continue;
+        } 
         while(!inks.empty()){
             while(!inks.empty() and inks.front().step < step_now){
                 InksTemp p = inks.front(); inks.pop();
