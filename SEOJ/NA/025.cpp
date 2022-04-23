@@ -3,7 +3,7 @@
 using namespace std;
 
 
-const int MAX_P = 1e6;
+const int MAX_P = 1e6 + 1;
 const int INF = 0x3f3f3f3f;
 int N, M;
 struct E{
