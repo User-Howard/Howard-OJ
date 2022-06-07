@@ -5,6 +5,8 @@
 using namespace std;
 
 
+vector<vector<int> > G;
+vector<int> cnt;
 int N, M;
 int main(){
     int T;
@@ -13,8 +15,11 @@ int main(){
         cin >> N >> M;
         priority_queue<int, vector<int>, greater<int> > que;
         vector<int> output;
-        vector<vector<int> > G(N);
-        vector<int> cnt(N);
+        cnt.resize(N);
+        cnt.clear();
+        G.resize(N);
+        for(int i=0;i<N;++i)
+            G[i].clear();
         for(int a, b, i=0;i<M;++i){
             cin >> a >> b;
             G[a].push_back(b);
