@@ -22,6 +22,8 @@
 using namespace std;
 
 typedef vector<vector<int> > vvi;
+typedef vector<int> vi;
+typedef vector<pair<int, int> > vpii;
 
 #define pb push_back
 #define mp make_pair
