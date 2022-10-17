@@ -1,31 +1,13 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
-int main(void)
-{
-	string inp;
-	while (getline(cin, inp))
-	{
-		if (inp == "EOF")
-		{
-			return 0;
-		}
-		bool t = true;
-		for (int i = 0; i < inp.size() / 2; i++)
-		{
-			if (inp[i] != inp[inp.size() - 1 - i])
-			{
-				t = false;
-			}
-		}
-		if (t)
-		{
-			printf("yes\n");
-		}
-		else
-		{
-			printf("no\n");
-		}
-	}
+
+int main() {
+	string S;
+	cin >> S;
+	string T(S);
+	copy(S.rbegin(), S.rend(), T.begin());
+	cout << (S==T ? "yes" : "no") << '\n';
 	return 0;
 }
