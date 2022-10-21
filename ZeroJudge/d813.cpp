@@ -3,31 +3,30 @@ using namespace std;
 
 int visited[50002];
 int find(int x){
-    if(visited[x]==x)
+    if(visited[x] == x)
         return x;
     else
-        return visited[x]=find(visited[x]);
+        return visited[x] = find(visited[x]);
 }
 int main(void){
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
     int N, M, s1, s2, people, Case=1;
-    while(cin>>N>>M){
+    while(cin >> N >> M && N){
         people=N;
         for(int i=1;i<=N;i++){
             visited[i]=i;
         }
         while(M--){
-            cin>>s1>>s2;
-            if(find(s1)==find(s2)) continue;
+            cin >> s1 >> s2;
+            if(find(s1) == find(s2)) continue;
 
-            visited[find(s1)]=find(s2);
+            visited[find(s1)] = find(s2);
             people--;
         }
-        printf("Case %d: %d\n", Case++, people);
+        cout << "Case " << Case++ << ": " << people << '\n';
     }
     
     return 0;
 }
-// re from https://github.com/walkerL0u15/OnlineJudgeCode/blob/master/ZeroJudge/d813.cpp
