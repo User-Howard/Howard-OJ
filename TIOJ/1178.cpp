@@ -21,7 +21,7 @@ pii operator-(const pii& a, const pii& b) {
 int operator^(const pii& a, const pii& b) {
     return a.fi*b.se - b.fi*a.se;
 }
-signed main() {
+int main() {
     int N;
     ios::sync_with_stdio(0); cin.tie(0);
     cin >> N;
