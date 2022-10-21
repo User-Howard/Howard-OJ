@@ -5,6 +5,7 @@
 #include <iomanip>
 using namespace std;
 
+#define int double
 typedef pair<int, int> pii;
 typedef vector<pair<int, int> > vpii;
 
@@ -47,7 +48,7 @@ void solve() {
 
     cout << setprecision(2) << fixed << ans << '\n';
 }
-int main() {
+signed main() {
     ios::sync_with_stdio(0); cin.tie(0);
     while(cin >> N)
         solve();
