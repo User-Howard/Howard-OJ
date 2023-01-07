@@ -41,7 +41,7 @@ int main() {
     matrix[0][0] = 0, matrix[0][1] = 1;
     matrix[1][0] = A, matrix[1][1] = B;
 
-    auto ans = pow(matrix, N-1) ;
+    vvi ans = pow(matrix, N-1) ;
     cout << (ans[0][0]*x1 + ans[0][1]*x2) %MOD<< '\n';
     
 
