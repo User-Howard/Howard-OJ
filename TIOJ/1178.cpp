@@ -4,9 +4,9 @@
 #include <vector>
 using namespace std;
 
-#define int double
-typedef pair<int, int> pii;
-typedef vector<pair<int, int> > vpii;
+
+typedef pair<int64_t, int64_t> pii;
+typedef vector<pair<int64_t, int64_t> > vpii;
 
 #define pb push_back
 #define mp make_pair
@@ -18,7 +18,7 @@ typedef vector<pair<int, int> > vpii;
 pii operator-(const pii& a, const pii& b) {
     return mp(a.fi-b.fi, a.se-b.se);
 }
-int operator^(const pii& a, const pii& b) {
+int64_t operator^(const pii& a, const pii& b) {
     return a.fi*b.se - b.fi*a.se;
 }
 int main() {
