@@ -1,9 +1,13 @@
 #include <iostream>
+<<<<<<< Updated upstream
 #include <map>
+=======
+>>>>>>> Stashed changes
 using namespace std;
 
 
 int main(){
+<<<<<<< Updated upstream
     int N;
     string s[(int)1e5];
     map<string, string> m;
@@ -17,5 +21,8 @@ int main(){
         cout << m[s[i]] << ' ';
     }
     cout << '\n';
+=======
+    
+>>>>>>> Stashed changes
     return 0;
 }
