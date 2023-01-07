@@ -24,7 +24,6 @@ int SETX(int n){
 }
 int main(void){
     int len=SETX(100000000);
-
     int N1, N2, sum;
     while(cin>>N1>>N2){
         sum=0;
