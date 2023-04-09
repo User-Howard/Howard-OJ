@@ -37,7 +37,7 @@ const readmeContent = `
 \`\`\` 
 ${result.output}\`\`\`
 
-總共有 ${result.count} 個 .cpp 檔案。
+`總共有 ${result.count} 個 .cpp 檔案。`
 `;
 
 // 輸出目錄結構到README.md中
