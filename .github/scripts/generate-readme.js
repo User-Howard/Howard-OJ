@@ -17,7 +17,6 @@ function generateReadme(path, level, count) {
       count = result.count;
     } else {
       // 如果是檔案，輸出檔名
-      output += indent + '- ' + file + '\n';
       if (file.endsWith('.cpp')) {
         count++;
       }
