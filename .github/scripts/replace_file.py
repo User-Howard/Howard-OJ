@@ -22,4 +22,4 @@ def move_files(source_dir, target_dir):
 
 if __name__ == "__main__":
     # 设置源目录和目标目录
-    source_dir = "./"
+    source_dir = "."
