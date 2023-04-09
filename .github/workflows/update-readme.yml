@@ -10,10 +10,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  job1:
-    name: 
-    
-  
   update-readme:
     runs-on: ubuntu-latest
     steps:
