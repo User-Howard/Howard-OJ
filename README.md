@@ -6,26 +6,6 @@
 `總共完成了 370 個題目。`
 
 ``` 
-- .git
-  - branches
-  - hooks
-  - info
-  - logs
-    - refs
-      - heads
-      - remotes
-        - origin
-  - objects
-    - info
-    - pack
-  - refs
-    - heads
-    - remotes
-      - origin
-    - tags
-- .github
-  - scripts
-  - workflows
 - APCS
   - 2016 03
   - 2016 10
