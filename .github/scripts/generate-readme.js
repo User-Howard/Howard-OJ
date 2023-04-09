@@ -4,7 +4,7 @@ const { execSync } = require('child_process');
 
 const tree = execSync('tree -aI node_modules').toString();
 
-const readme = `# My Repository\n\n''' ${tree}'''`;
+const readme = `# My Repository\n\n\'\'\' ${tree}\'\'\'`;
 
 console.log(readme);
 
