@@ -1,7 +1,9 @@
-const fs = require('fs');
+const { execSync } = require('child_process');
 
-const tree = fs.readdirSync('.', { withFileTypes: true });
-const directories = tree.filter(dirent => dirent.isDirectory()).map(dirent => dirent.name);
-const readme = `# Directories\n\n${directories.map(d => `- ${d}`).join('\n')}\n`;
+const tree = execSync('tree -aI node_modules').toString();
+
+const readme = `# My Repository\n\n${tree}`;
+
+console.log(readme);
 
 fs.writeFileSync('README.md', readme);
