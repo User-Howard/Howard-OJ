@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 // 遞歸函數遍歷目錄結構，輸出到README.md中
-function generateReadme(path, level, count) {
+function generateReadme(path, level, countcpp, countpy) {
   const files = fs.readdirSync(path);
   let output = '';
   level = level || 0;
@@ -18,16 +18,19 @@ function generateReadme(path, level, count) {
     } else {
       // 如果是檔案，輸出檔名
       if (file.endsWith('.cpp')) {
-        count++;
+        countcpp++;
+      }
+      if (file.endsWith('.py')) {
+        countpy++;
       }
     }
   });
 
-  return { output: output, count: count };
+  return { output: output, countcpp: countcpp, countpy: countpy };
 }
 
 // 生成程式碼區塊
-const result = generateReadme('./', 0, 0);
+const result = generateReadme('./', 0, 0, 0);
 const readmeContent = `
 # Howard-OJ
 
@@ -36,7 +39,8 @@ const readmeContent = `
 \`\`\` 
 ${result.output}\`\`\`
 
-\`總共有 ${result.count} 個 .cpp 檔案。\`
+\`總共有 ${result.countcpp} 個 .cpp 檔案。\`
+\`總共有 ${result.countpy} 個 .py 檔案。\`
 `;
 
 // 輸出目錄結構到README.md中
