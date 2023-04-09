@@ -30,7 +30,8 @@ function generateReadme(path, level, count) {
 
 
 var d = new Date();
-var t = d.toLocaleTimeString();
+var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+var date = d.toLocaleDateString('en-US', options);
 
 
 
@@ -46,7 +47,7 @@ const readmeContent = `
 \`\`\` 
 ${result.output}
 \`\`\`
-\最近更新時間：${t}\`
+\`最近更新日期：${date}\`
 
 `;
 
