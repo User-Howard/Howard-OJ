@@ -7,7 +7,7 @@ def move_files(source_dir, target_dir):
     """
     # 获取源目录下的所有文件名
     filenames = os.listdir(source_dir)
-    print(f'::set-output name=test_report::{filenames}')
+    print('filenames')
     for filename in filenames:
         # 判断是否是目标文件
         if "readme" not in filename.lower():
@@ -22,4 +22,4 @@ def move_files(source_dir, target_dir):
 
 if __name__ == "__main__":
     # 设置源目录和目标目录
-    source_dir = str(os.getcwd)
+    source_dir = "."
