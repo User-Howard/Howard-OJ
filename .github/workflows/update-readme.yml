@@ -10,11 +10,25 @@ on:
   workflow_dispatch:
 
 jobs:
+  job1:
+    name: 
+    
+  
   update-readme:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        
+        #移動資料
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Run replace_file
+        run: python ./.github/scripts/replace_file.py
+        
+        #更新README
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
@@ -23,12 +37,14 @@ jobs:
         run: npm install
       - name: Generate README
         run: node ./.github/scripts/generate-readme.js
+        
+        
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add README.md
-          git commit -m "Update README" -a || true
+          git add -A
+          git commit -m "-" -a || true
       - name: Push to master
         uses: ad-m/github-push-action@master
         with:
