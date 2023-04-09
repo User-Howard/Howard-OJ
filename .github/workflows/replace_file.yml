@@ -19,5 +19,18 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.x
+          
       - name: Run replace_file
         run: python ./.github/scripts/replace_file.py
+        
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "Update README" -a || true
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
