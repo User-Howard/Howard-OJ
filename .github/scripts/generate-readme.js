@@ -10,6 +10,9 @@ function generateReadme(path, level, count) {
   files.forEach(function(file) {
     const stats = fs.statSync(path + '/' + file);
     if (stats.isDirectory()) {
+      if(file.startsWith('.')) {
+        continue;
+      }
       // 如果是資料夾，遞歸處理
       output += indent + '- ' + file + '\n';
       const result = generateReadme(path + '/' + file, level + 1, count);
