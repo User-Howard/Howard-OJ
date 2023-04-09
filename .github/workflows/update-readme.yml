@@ -4,6 +4,8 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
+  
 jobs:
   update-readme:
     runs-on: ubuntu-latest
