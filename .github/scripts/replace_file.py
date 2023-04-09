@@ -17,7 +17,7 @@ def move_files(source_dir):
             # 移动文件
             if filename[0:2] == "ZJ":
               src_path = os.path.join(source_dir, filename)
-              dst_path = os.path.join("/ZeroJudge/", filename[2:])
+              dst_path = os.path.join("./ZeroJudge/", filename[2:])
               shutil.move(src_path, dst_path)
 
 if __name__ == "__main__":
