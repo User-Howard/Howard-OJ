@@ -30,7 +30,7 @@ function generateReadme(path, level, count) {
 }
 
 // 生成程式碼區塊
-const result = generateReadme('./', 0, 0, 0);
+const result = generateReadme('./', 0, 0);
 const readmeContent = `
 # Howard-OJ
 
