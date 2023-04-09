@@ -17,7 +17,7 @@ function generateReadme(path, level, count) {
       count = result.count;
     } else {
       // 如果是檔案，輸出檔名
-      if (file.endsWith('.cpp')) {
+      if (file.endsWith('.cpp') || file.endsWith('.py') || file.endsWith('.c')) {
         count++;
       }
     }
@@ -33,10 +33,10 @@ const readmeContent = `
 
 ###### 專門紀錄我的程式資料夾。
 
+\`總共完成了 ${result.count} 個題目。\`
+
 \`\`\` 
 ${result.output}\`\`\`
-
-\`總共有 ${result.count} 個 .cpp 檔案。\`
 `;
 
 // 輸出目錄結構到README.md中
