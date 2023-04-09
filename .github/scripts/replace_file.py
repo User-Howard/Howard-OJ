@@ -1,7 +1,7 @@
 import os
 import shutil
 
-def move_files(source_dir, target_dir):
+def move_files(source_dir):
     """
     将指定目录下的特定文件移动到另一个指定目录
     """
@@ -23,3 +23,4 @@ def move_files(source_dir, target_dir):
 if __name__ == "__main__":
     # 设置源目录和目标目录
     source_dir = "."
+    move_files(source_dir)
