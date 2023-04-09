@@ -27,10 +27,11 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add README.md
-          git commit -m "Update README" -a || true
+          git add -A
+          git commit -m "Replace files" -a || true
           
-      - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
+      - name: Push to master
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: master
