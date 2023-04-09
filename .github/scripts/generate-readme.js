@@ -28,6 +28,12 @@ function generateReadme(path, level, count) {
   return { output: output, count: count };
 }
 
+
+var d = new Date();
+var t = d.toLocaleTimeString();
+
+
+
 // 生成程式碼區塊
 const result = generateReadme('./', 0, 0);
 const readmeContent = `
@@ -38,7 +44,10 @@ const readmeContent = `
 \`總共完成了 ${result.count} 個題目。\`
 
 \`\`\` 
-${result.output}\`\`\`
+${result.output}
+\`\`\`
+\最近更新時間：${t}\`
+
 `;
 
 // 輸出目錄結構到README.md中
