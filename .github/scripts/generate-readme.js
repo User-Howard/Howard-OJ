@@ -19,5 +19,12 @@ function generateReadme(path, level) {
   return output;
 }
 
+// 生成程式碼區塊
+const readmeContent = `
+\`\`\` 
+${generateReadme('./')}
+\`\`\`
+`;
+
 // 輸出目錄結構到README.md中
-fs.writeFileSync('README.md', generateReadme('./'));
+fs.writeFileSync('README.md', readmeContent);
