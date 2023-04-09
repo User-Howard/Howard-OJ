@@ -1,7 +1,9 @@
 name: Update README
 on:
   push:
-    branches: [ main ]
+    branches: 
+    - main
+    - release/*
   pull_request:
     branches: [ main ]
   workflow_dispatch:
