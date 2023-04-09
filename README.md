@@ -1,55 +1,6 @@
 # My Repository
 
 ``` .
-├── .git
-│   ├── FETCH_HEAD
-│   ├── HEAD
-│   ├── branches
-│   ├── config
-│   ├── description
-│   ├── hooks
-│   │   ├── applypatch-msg.sample
-│   │   ├── commit-msg.sample
-│   │   ├── fsmonitor-watchman.sample
-│   │   ├── post-update.sample
-│   │   ├── pre-applypatch.sample
-│   │   ├── pre-commit.sample
-│   │   ├── pre-merge-commit.sample
-│   │   ├── pre-push.sample
-│   │   ├── pre-rebase.sample
-│   │   ├── pre-receive.sample
-│   │   ├── prepare-commit-msg.sample
-│   │   ├── push-to-checkout.sample
-│   │   └── update.sample
-│   ├── index
-│   ├── info
-│   │   └── exclude
-│   ├── logs
-│   │   ├── HEAD
-│   │   └── refs
-│   │       ├── heads
-│   │       │   └── master
-│   │       └── remotes
-│   │           └── origin
-│   │               └── master
-│   ├── objects
-│   │   ├── info
-│   │   └── pack
-│   │       ├── pack-187c9b138771ca1933ee36cf14841ab287355b95.idx
-│   │       └── pack-187c9b138771ca1933ee36cf14841ab287355b95.pack
-│   ├── refs
-│   │   ├── heads
-│   │   │   └── master
-│   │   ├── remotes
-│   │   │   └── origin
-│   │   │       └── master
-│   │   └── tags
-│   └── shallow
-├── .github
-│   ├── scripts
-│   │   └── generate-readme.js
-│   └── workflows
-│       └── update-readme.yml
 ├── APCS
 │   ├── 1050305APCSImplementation.pdf
 │   ├── 1051029APCSImplementation.pdf
@@ -193,7 +144,6 @@
 │       ├── 187.cpp
 │       ├── 399.cpp
 │       └── 416.cpp
-├── TEST
 ├── TIOJ
 │   ├── 1001.cpp
 │   ├── 1002.cpp
@@ -450,6 +400,7 @@
 │   ├── h098.cpp
 │   └── j125.cpp
 ├── package-lock.json
+├── test
 ├── 文獻
 │   ├── DEF.cpp
 │   ├── char.txt
@@ -466,5 +417,5 @@
     ├── 線段樹.cpp
     └── 線段樹實例.cpp
 
-51 directories, 413 files
+31 directories, 384 files
 ```
