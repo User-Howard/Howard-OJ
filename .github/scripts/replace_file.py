@@ -19,6 +19,14 @@ def move_files(source_dir):
               src_path = os.path.join(source_dir, filename)
               dst_path = os.path.join("./ZeroJudge/", filename[2:])
               shutil.move(src_path, dst_path)
+            elif filename[0:2] == "CF":
+              src_path = os.path.join(source_dir, filename)
+              dst_path = os.path.join("./CodeForces/", filename[2:])
+              shutil.move(src_path, dst_path)
+            elif filename[0:2] == "CSES":
+              src_path = os.path.join(source_dir, filename)
+              dst_path = os.path.join("./CSES/", filename[4:])
+              shutil.move(src_path, dst_path)
 
 if __name__ == "__main__":
     # 设置源目录和目标目录
