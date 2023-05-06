@@ -19,7 +19,7 @@ int main(){
     
     for(int i=1;i<=N;++i)
         space[i] = max(C[i] - C[i-1], C[i+1] - C[i]);
-    for(int i=0;i<N+2;++i){
+    for(int i=0;i<N;++i){
         bool cut = false;
         for(int j=1;j<=N;++j){
             if(space[j] >= H[j]){
@@ -30,13 +30,13 @@ int main(){
 
                 for(int k=j+1;k<=N+1;++k){
                     if(H[k] != INF){
-                        space[j-1] = max(space[j-1], C[k] - C[j-1]);
+                        space[k] = max(space[k], C[k] - C[j-1]);
                         break;
                     }
                 }
                 for(int k=j-1;k>=0;--k){
                     if(H[k] != INF){
-                        space[j+1] = max(space[j+1], C[j+1] - C[k]);
+                        space[k] = max(space[k], C[j+1] - C[k]);
                         break;
                     }
                 }
