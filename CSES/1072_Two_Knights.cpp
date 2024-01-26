@@ -6,7 +6,7 @@ int main() {
     int N;
     cin>>N;
     for(int i = 1;i<=N;++i) {
-        int ans = (i*i*i*i-i*i)/2;
+        uint64_t ans = (1LL*i*i*i*i-1LL*i*i)/2;
         if(i>=3) {
             ans -= 4*(i-2)*(i-1);
         }
