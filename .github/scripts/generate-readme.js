@@ -53,3 +53,4 @@ ${result.output}
 
 // 輸出目錄結構到README.md中
 fs.writeFileSync('README.md', readmeContent);
+fs.writeFileSync('做題數', `${result.count}`);
