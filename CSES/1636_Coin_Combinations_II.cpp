@@ -11,8 +11,8 @@ int main() {
     vector<uint64_t> dp(X+1);
     dp[0] = 1;
     for(int &i: C) cin >> i;
-    for(int j=0;j<=X;++j) {
-        for(int i=0;i<N;++i) {
+    for(int i=0;i<N;++i) {
+        for(int j=0;j<=X;++j) {
             if(j<C[i]) continue;
             dp[j] += dp[j-C[i]];
             dp[j] %= MOD;
