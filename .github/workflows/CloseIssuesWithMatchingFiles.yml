@@ -29,7 +29,17 @@ jobs:
               echo ${row} | base64 --decode | jq -r ${1}
             }
             ISSUE_TITLE=$(_jq '.title')
-            
+            folder_path=$(echo "$ISSUE_TITLE" | grep -o '\[.*\]' | tr -d '[]')
+            file_name=$(echo "$ISSUE_TITLE" | awk '{print $2}')
+
+            echo "folder_path = $folder_path"
+            echo "file_name = $file_name"
+
+            if [ -f "$folder_path/$file_name.cpp" ]; then
+                echo "File exists in $folder_path folder."
+            else
+                echo "File does not exist in $folder_path folder."
+            fi
             FILENAME=$(echo "$ISSUE_TITLE" | awk -F']' '{print $1}' | sed 's/\[//g' | sed 's/\//_/g' | tr '[:upper:]' '[:lower:]' | sed 's/ /_/g' | sed 's/_$//').cpp
             echo "Checking for file: $ISSUE_TITLE"
             if curl -s -o /dev/null -I -w "%{http_code}" -H "Authorization: token $ACCESS_TOKEN" "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/main/$FILENAME" | grep -q 200; then
