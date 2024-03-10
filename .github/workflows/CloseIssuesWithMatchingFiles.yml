@@ -26,16 +26,15 @@ jobs:
             }
             ISSUE_TITLE=$(_jq '.title')
 
-            # 将问题标题中的空格替换为下划线，并转换为小写
-            # 解析标题，提取前后括号内的内容
-            FILENAME=$(echo "$ISSUE_TITLE" | sed -E 's/.*\[(.*)\].*/\1/' | tr '/' '_' | awk '{print tolower($0)}').cpp
+            # 提取文件夹和文件名
+            FOLDER=$(echo "$ISSUE_TITLE" | cut -d'/' -f1)
+            FILE=$(echo "$ISSUE_TITLE" | cut -d'/' -f2)
 
-            echo "Checking for file: $FILENAME"
-            if curl -s -o /dev/null -I -w "%{http_code}" -H "Authorization: token $ACCESS_TOKEN" "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/main/$FILENAME" | grep -q 200; then
+            # 检查文件是否存在
+            if curl -s -o /dev/null -I -w "%{http_code}" -H "Authorization: token $ACCESS_TOKEN" "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/main/$FOLDER/$FILE" | grep -q 200; then
               ISSUE_NUMBER=$(_jq '.number')
+              # 关闭问题
               curl -s -X PATCH -H "Authorization: token $ACCESS_TOKEN" -d '{"state":"closed"}' "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER"
               echo "Closed issue: $ISSUE_TITLE"
-            else
-              echo "File not found: $FILENAME"
             fi
           done
