@@ -25,9 +25,9 @@ jobs:
               echo ${row} | base64 --decode | jq -r ${1}
             }
             ISSUE_TITLE=$(_jq '.title')
-            FOLDER=$(echo "$ISSUE_TITLE" | cut -d'/' -f1)
-            FILE=$(echo "$ISSUE_TITLE" | cut -d'/' -f2)
-            if curl -s -o /dev/null -I -w "%{http_code}" -H "Authorization: token $ACCESS_TOKEN" "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/main/$FOLDER/$FILE" | grep -q 200; then
+            # 将问题标题中的空格替换为下划线，并转换为小写
+            FILENAME=$(echo "$ISSUE_TITLE" | tr ' ' '_' | tr '[:upper:]' '[:lower:]').cpp
+            if curl -s -o /dev/null -I -w "%{http_code}" -H "Authorization: token $ACCESS_TOKEN" "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/main/$FILENAME" | grep -q 200; then
               ISSUE_NUMBER=$(_jq '.number')
               curl -s -X PATCH -H "Authorization: token $ACCESS_TOKEN" -d '{"state":"closed"}' "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER"
               echo "Closed issue: $ISSUE_TITLE"
