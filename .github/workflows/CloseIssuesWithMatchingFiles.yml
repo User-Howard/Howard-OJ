@@ -23,4 +23,20 @@ jobs:
           REPO_OWNER: "User-Howard"
           REPO_NAME: "Howard-OJ"
         run: |
-          ls
+         ISSUES=$(curl -s -H "Authorization: token $ACCESS_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues")
+          for row in $(echo "${ISSUES}" | jq -r '.[] | @base64'); do
+            _jq() {
+              echo ${row} | base64 --decode | jq -r ${1}
+            }
+            ISSUE_TITLE=$(_jq '.title')
+            
+            FILENAME=$(echo "$ISSUE_TITLE" | awk -F']' '{print $1}' | sed 's/\[//g' | sed 's/\//_/g' | tr '[:upper:]' '[:lower:]' | sed 's/ /_/g' | sed 's/_$//').cpp
+            echo "Checking for file: $ISSUE_TITLE"
+            if curl -s -o /dev/null -I -w "%{http_code}" -H "Authorization: token $ACCESS_TOKEN" "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/main/$FILENAME" | grep -q 200; then
+              ISSUE_NUMBER=$(_jq '.number')
+              curl -s -X PATCH -H "Authorization: token $ACCESS_TOKEN" -d '{"state":"closed"}' "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER"
+              echo "Closed issue: $ISSUE_TITLE"
+            else
+              echo "File not found: $FILENAME"
+            fi
+          done
