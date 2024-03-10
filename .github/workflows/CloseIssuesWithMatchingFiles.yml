@@ -32,5 +32,7 @@ jobs:
               ISSUE_NUMBER=$(_jq '.number')
               curl -s -X PATCH -H "Authorization: token $ACCESS_TOKEN" -d '{"state":"closed"}' "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER"
               echo "Closed issue: $ISSUE_TITLE"
+            else
+              echo "File not found: $FILENAME"
             fi
           done
