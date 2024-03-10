@@ -37,16 +37,10 @@ jobs:
 
             if [ -f "$folder_path/$file_name.cpp" ]; then
                 echo "File exists in $folder_path folder."
+                ISSUE_NUMBER=$(_jq '.number')
+                curl -s -X PATCH -H "Authorization: token $ACCESS_TOKEN" -d '{"state":"closed"}' "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER"
+                echo "Closed issue: $ISSUE_TITLE"
             else
                 echo "File does not exist in $folder_path folder."
-            fi
-            FILENAME=$(echo "$ISSUE_TITLE" | awk -F']' '{print $1}' | sed 's/\[//g' | sed 's/\//_/g' | tr '[:upper:]' '[:lower:]' | sed 's/ /_/g' | sed 's/_$//').cpp
-            echo "Checking for file: $ISSUE_TITLE"
-            if curl -s -o /dev/null -I -w "%{http_code}" -H "Authorization: token $ACCESS_TOKEN" "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/main/$FILENAME" | grep -q 200; then
-              ISSUE_NUMBER=$(_jq '.number')
-              curl -s -X PATCH -H "Authorization: token $ACCESS_TOKEN" -d '{"state":"closed"}' "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER"
-              echo "Closed issue: $ISSUE_TITLE"
-            else
-              echo "File not found: $FILENAME"
             fi
           done
