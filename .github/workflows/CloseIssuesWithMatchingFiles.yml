@@ -26,7 +26,7 @@ jobs:
             }
             ISSUE_TITLE=$(_jq '.title')
             # 将问题标题中的空格替换为下划线，并转换为小写
-            FILENAME=$(echo "$ISSUE_TITLE" | tr ' ' '_' | tr '[:upper:]' '[:lower:]').cpp
+            FILENAME=$(echo "$ISSUE_TITLE" | sed 's/[^a-zA-Z0-9._-]/_/g' | tr '[:upper:]' '[:lower:]').cpp
             echo "Checking for file: $FILENAME"
             if curl -s -o /dev/null -I -w "%{http_code}" -H "Authorization: token $ACCESS_TOKEN" "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/main/$FILENAME" | grep -q 200; then
               ISSUE_NUMBER=$(_jq '.number')
