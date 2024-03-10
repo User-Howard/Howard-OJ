@@ -19,18 +19,4 @@ jobs:
           REPO_OWNER: "User-Howard"
           REPO_NAME: "Howard-OJ"
         run: |
-          ISSUES=$(curl -s -H "Authorization: token $ACCESS_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues?state=open")
-          for row in $(echo "${ISSUES}" | jq -r '.[] | @base64'); do
-            _jq() {
-              echo ${row} | base64 --decode | jq -r ${1}
-            }
-            ISSUE_TITLE=$(_jq '.title')
-            ISSUE_NUMBER=$(_jq '.number')
-
-            # 检查标题中是否包含 DELETEME
-            if [[ "$ISSUE_TITLE" == *"DELETEME"* ]]; then
-              # 删除问题
-              curl -X DELETE -H "Authorization: token $ACCESS_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER"
-              echo "Deleted issue: $ISSUE_TITLE"
-            fi
-          done
+          ls
