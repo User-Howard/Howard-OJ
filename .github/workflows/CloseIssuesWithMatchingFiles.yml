@@ -15,9 +15,9 @@ jobs:
         
       - name: Run script to close issues
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          REPO_OWNER: ${{ secrets.REPO_OWNER }}
-          REPO_NAME: ${{ secrets.REPO_NAME }}
+          ACCESS_TOKEN: "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"
+          REPO_OWNER: "User-Howard"
+          REPO_NAME: "Howard-OJ"
         run: |
           ISSUES=$(curl -s -H "Authorization: token $ACCESS_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues")
           for row in $(echo "${ISSUES}" | jq -r '.[] | @base64'); do
