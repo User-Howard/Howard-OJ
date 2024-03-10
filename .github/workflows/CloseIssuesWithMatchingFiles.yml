@@ -25,7 +25,11 @@ jobs:
               echo ${row} | base64 --decode | jq -r ${1}
             }
             ISSUE_TITLE=$(_jq '.title')
-            FILENAME=$(echo "$ISSUE_TITLE" | awk -F']' '{print $1}' | sed 's/\[//g' | sed 's/\//_/g' | tr '[:upper:]' '[:lower:]' | sed 's/ /_/g' | sed 's/_$//').cpp
+
+            # 将问题标题中的空格替换为下划线，并转换为小写
+            # 解析标题，提取前后括号内的内容
+            FILENAME=$(echo "$ISSUE_TITLE" | sed -E 's/.*\[(.*)\].*/\1/' | tr '/' '_' | awk '{print tolower($0)}').cpp
+
             echo "Checking for file: $FILENAME"
             if curl -s -o /dev/null -I -w "%{http_code}" -H "Authorization: token $ACCESS_TOKEN" "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/main/$FILENAME" | grep -q 200; then
               ISSUE_NUMBER=$(_jq '.number')
