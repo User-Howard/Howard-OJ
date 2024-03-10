@@ -25,8 +25,8 @@ jobs:
               echo ${row} | base64 --decode | jq -r ${1}
             }
             ISSUE_TITLE=$(_jq '.title')
-            # 使用 sed 命令将非字母数字字符和下划线替换为下划线，并转换为小写
-            FILENAME=$(echo "$ISSUE_TITLE" | sed -r 's/[^a-zA-Z0-9_]/_/g' | tr '[:upper:]' '[:lower:]').cpp
+            # 将问题标题中的空格替换为下划线，并转换为小写
+            FILENAME=$(echo "$ISSUE_TITLE" | sed 's/\[\(.*\)\]\(.*\)/\1\/\2.cpp/' | tr '[:upper:]' '[:lower:]')
             echo "Checking for file: $FILENAME"
             if curl -s -o /dev/null -I -w "%{http_code}" -H "Authorization: token $ACCESS_TOKEN" "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/main/$FILENAME" | grep -q 200; then
               ISSUE_NUMBER=$(_jq '.number')
