@@ -12,7 +12,7 @@ jobs:
       id: extract_input
       uses: actions/github-script@v4
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: "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"
         script: |
           const payload = context.payload;
           const labels = payload.issue.labels.map(label => label.name);
