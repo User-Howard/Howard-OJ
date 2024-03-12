@@ -3,7 +3,7 @@ name: Process Issue Title
 on:
   issues:
     types: [opened]
-
+  workflow_dispatch:
 jobs:
   process_title:
     runs-on: ubuntu-latest
