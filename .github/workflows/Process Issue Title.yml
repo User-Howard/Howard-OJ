@@ -28,7 +28,7 @@ jobs:
             core.setOutput('issue_number', payload.issue.number);
 
             // Reply to the issue
-            const message = `**Judge:** \`${folder_path}\`\n**Question Name:** *${file_name}*`;
+            const message = `**Judge:** ${folder_path}\n**Question Name:** *${file_name}*`;
             github.issues.createComment({
               issue_number: payload.issue.number,
               body: message
