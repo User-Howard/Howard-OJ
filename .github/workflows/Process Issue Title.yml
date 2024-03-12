@@ -14,24 +14,15 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          input="${{ github.event.issue.title }}"
-          folder_path=$(echo "$input" | grep -o '\[.*\]' | tr -d '[]')
-          file_name=$(echo "$input" | awk '{print $2}')
-          echo "::set-output name=folder_path::$folder_path"
-          echo "::set-output name=file_name::$file_name"
-          echo "::set-output name=issue_number::${{ github.event.issue.number }}"
-
-    - name: Reply to issue with extracted data
-      if: steps.extract_input.outputs.folder_path != '' && steps.extract_input.outputs.file_name != ''
-      uses: actions/github-script@v4
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const issue_number = ${{ steps.extract_input.outputs.issue_number }};
-          const folder_path = ${{ steps.extract_input.outputs.folder_path }};
-          const file_name = ${{ steps.extract_input.outputs.file_name }};
-          const message = `folder_path = ${folder_path}\nfile_name = ${file_name}`;
-          github.issues.createComment({
-            issue_number: issue_number,
-            body: message
-          });
+          const labels = github.context.payload.issue.labels.map(label => label.name);
+          if (labels.includes('want to solve')) {
+            const title = github.context.payload.issue.title;
+            const folder_path = title.match(/\[(.*?)\]/)[1];
+            const file_name = title.split(' ')[1];
+            console.log(`folder_path = ${folder_path}`);
+            console.log(`file_name = ${file_name}`);
+            console.log(`issue_number = ${github.context.payload.issue.number}`);
+            core.setOutput('folder_path', folder_path);
+            core.setOutput('file_name', file_name);
+            core.setOutput('issue_number', github.context.payload.issue.number);
+          }
