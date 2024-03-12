@@ -14,15 +14,16 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          const labels = github.context.payload.issue.labels.map(label => label.name);
+          const payload = context.payload;
+          const labels = payload.issue.labels.map(label => label.name);
           if (labels.includes('want to solve')) {
-            const title = github.context.payload.issue.title;
+            const title = payload.issue.title;
             const folder_path = title.match(/\[(.*?)\]/)[1];
             const file_name = title.split(' ')[1];
             console.log(`folder_path = ${folder_path}`);
             console.log(`file_name = ${file_name}`);
-            console.log(`issue_number = ${github.context.payload.issue.number}`);
+            console.log(`issue_number = ${payload.issue.number}`);
             core.setOutput('folder_path', folder_path);
             core.setOutput('file_name', file_name);
-            core.setOutput('issue_number', github.context.payload.issue.number);
+            core.setOutput('issue_number', payload.issue.number);
           }
