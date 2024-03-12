@@ -12,7 +12,7 @@ jobs:
       id: extract_input
       uses: actions/github-script@v4
       with:
-        github-token: "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"
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const payload = context.payload;
           const labels = payload.issue.labels.map(label => label.name);
@@ -30,6 +30,8 @@ jobs:
             // Reply to the issue
             const message = `**Judge:** ${folder_path}\n**Question Name:** *${file_name}*`;
             github.issues.createComment({
+              owner: payload.repository.owner.login,
+              repo: payload.repository.name,
               issue_number: payload.issue.number,
               body: message
             });
