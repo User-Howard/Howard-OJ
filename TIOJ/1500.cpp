@@ -12,6 +12,7 @@ const ll INF = 5e18;
 const int MAX_N = 5e4 + 5;
 int N;
 pair<ll, ll> Nums[MAX_N];
+// ld dx, dy;
 ld dis(auto a, auto b) {
     ld dx = a.x-b.x;
     ld dy = a.y-b.y;
