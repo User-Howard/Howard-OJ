@@ -41,6 +41,8 @@ jobs:
           const message = `Here is the relevant URL: ${{ steps.generate_url.outputs.url }}`;
           console.log(message);
           github.issues.createComment({
-            issue_number: ${{ steps.extract_input.outputs.issue_number }},
+            owner: payload.repository.owner.login,
+            repo: payload.repository.name,
+            issue_number: ${{ steps.extract_input.outputs.issue_number }},,
             body: message
           });
