@@ -29,6 +29,8 @@ jobs:
             
             // Call Python script to generate URL
             const { execSync } = require('child_process');
+            cd github/scripts/
+            ls
             const url = execSync(`python .github/scripts/generate_url.py "${title}"`, { encoding: 'utf-8' });
             console.log("Generated URL:", url.trim());
             
