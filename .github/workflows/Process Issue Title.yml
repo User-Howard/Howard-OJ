@@ -15,6 +15,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const payload = context.payload;
+          console.log(payload.issue); // Add this line to check if payload.issue is available
           const labels = payload.issue.labels.map(label => label.name);
           if (labels.includes('want to solve')) {
             const title = payload.issue.title;
@@ -27,17 +28,19 @@ jobs:
             core.setOutput('file_name', file_name);
             core.setOutput('issue_number', payload.issue.number);
             
-            // Call Python script to generate URL
-            // const { execSync } = require('child_process');
-            // const url = execSync(`python .github/scripts/generate_url.py "${title}"`, { encoding: 'utf-8' });
-            // console.log("Generated URL:", url.trim());
-            
-            // Reply to the issue
-            const message = `**Judge:** ${folder_path}\n**Question Name:** *${file_name}*`;
-            github.issues.createComment({
-              owner: payload.repository.owner.login,
-              repo: payload.repository.name,
-              issue_number: payload.issue.number,
-              body: message
-            });
-          }
+    - name: Generate URL
+      id: generate_url
+      run: python .github/scripts/generate_url.py "${{ steps.extract_input.outputs.folder_path }}"
+
+    - name: Reply to issue with generated URL
+      if: steps.extract_input.outputs.folder_path != '' && steps.generate_url.outputs.url != ''
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const message = `Here is the relevant URL: ${{ steps.generate_url.outputs.url }}`;
+          console.log(message);
+          github.issues.createComment({
+            issue_number: ${{ steps.extract_input.outputs.issue_number }},
+            body: message
+          });
