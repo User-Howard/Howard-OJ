@@ -35,7 +35,7 @@ jobs:
             echo "folder_path = $folder_path"
             echo "file_name = $file_name"
 
-            if [ -f "$folder_path/$file_name.cpp" ]; then
+            if [ -f "$folder_path/$file_name.cpp" ] || [ -f "$folder_path/$file_name.py" ]; then
                 echo "File exists in $folder_path folder."
                 ISSUE_NUMBER=$(_jq '.number')
                 curl -s -X PATCH -H "Authorization: token $ACCESS_TOKEN" -d '{"state":"closed"}' "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER"
