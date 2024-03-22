@@ -28,11 +28,9 @@ jobs:
             core.setOutput('issue_number', payload.issue.number);
             
             // Call Python script to generate URL
-            const { execSync } = require('child_process');
-            cd github/scripts/
-            ls
-            const url = execSync(`python .github/scripts/generate_url.py "${title}"`, { encoding: 'utf-8' });
-            console.log("Generated URL:", url.trim());
+            // const { execSync } = require('child_process');
+            // const url = execSync(`python .github/scripts/generate_url.py "${title}"`, { encoding: 'utf-8' });
+            // console.log("Generated URL:", url.trim());
             
             // Reply to the issue
             const message = `**Judge:** ${folder_path}\n**Question Name:** *${file_name}*`;
