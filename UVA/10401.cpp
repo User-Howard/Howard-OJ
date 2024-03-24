@@ -37,6 +37,7 @@ ll solve() {
     return accumulate(dp[0].begin(), dp[0].end(), 0LL);
 }
 int main() {
+    ios::sync_with_stdio(0), cin.tie(0);
     while(cin >> S) {
         cout << solve() << '\n';
     }
