@@ -1,28 +1,27 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-
+typedef long long ll;
 
 const int INF = 0x3f3f3f3f;
 int A, B, C, D, M, S, T;
 int max_length = -INF, min_time = INF;
-int f(int t){ // t秒內最多可以跑多遠？
-	// return (t * B + (T - t) * A + max(t * C - M, 0) * D);
-	int max_len = -1;
-	for(int i=0;t-i-ceil(1.0*max(i*C-M,0)/D) >= 0;++i){
-		max_len = max(max_len, (i * B + (t - i - max(i * C - M, 0) / D) * A));	
+ll f(int t){ // t秒內最多可以跑多遠？
+	ll max_len = 0LL;
+	for(int i=0;t-i-(max(i*C-M,0)+D-1)/D >= 0;++i){
+		max_len = max(max_len, (1LL*i * B + (t-i-(max(i*C-M,0)+D-1)/D) * A));	
 	}
 	return max_len;
 }
-int binary_search(int l, int r){
-	if(r - l <= 1)
-		return r;
-	int mid = (r + l) / 2;
-	// cout << "\n\n" << "l: " << l << '\t' << "r: " << r << '\n';
-	// cout << mid << '\t' << f(mid) << '\n';
-	if(S <= f(mid)) r = mid;
-	else l = mid;
-	return binary_search(l, r);
+int binary_search(int l, int r) { // [l, r)
+	// cerr << l << ' ' << r << '\n';
+	while(r-l > 1) {
+		int mid = (r + l) / 2;
+		if(f(mid) < S) l = mid+1;
+		else r = mid;
+		// cerr << l << ' ' << r << '\n';
+	}
+	return l;
 }
 int main(){
 	ios::sync_with_stdio(0); cin.tie(0);
@@ -34,7 +33,7 @@ int main(){
 		cout << ans << '\n';
 	} else {
 		cout << "Yes" << '\n';
-		cout << binary_search(-1, T) << '\n';
+		cout << binary_search(0, T+1) << '\n';
 	}
 	return 0;
 }
