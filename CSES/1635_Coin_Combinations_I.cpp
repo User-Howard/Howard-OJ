@@ -1,4 +1,5 @@
 #include <iostream>
+<<<<<<< Updated upstream
 #include <algorithm>
 #include <vector>
 using namespace std;
@@ -20,5 +21,12 @@ int main() {
     }
     cout << dp[X] << '\n';
 
+=======
+using namespace std;
+
+
+int main() {
+    
+>>>>>>> Stashed changes
     return 0;
 }
