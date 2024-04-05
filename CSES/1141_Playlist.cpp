@@ -1,6 +1,5 @@
-#include <bits/stdc++.h>
 #include <iostream>
-#include <map>
+#include <set>
 #include <vector>
 using namespace std;
  
@@ -11,15 +10,19 @@ int main() {
     cin >> N;
     vector<int> Nums(N);
     for(int &i: Nums) cin >> i;
-    map<int, int> m;
+    set<int> s;
     int answer = 1;
     int pointer = 0;
     for(int i=0;i<N;++i) {
-        while(pointer < N && m[Nums[pointer]]==0) {
-            m[Nums[pointer++]]++;
+        if(s.count(Nums[i])) {
+            while(Nums[pointer] != Nums[i]) {
+                s.erase(Nums[pointer++]);
+            }
+            s.erase(Nums[i]);
+            pointer++;
         }
-        answer = max(pointer - i, answer);
-        m[Nums[i]]--;
+        s.insert(Nums[i]);
+        answer = max(answer, i-pointer+1);
     }
     cout << answer << '\n';
     return 0;
