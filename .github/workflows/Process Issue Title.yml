@@ -29,34 +29,6 @@ jobs:
         GITHUB_REPOSITORY: ${{ github.repository }}
       run: python ./.github/scripts/rename_issue_title.py
       
-    - name: Run script to close issues
-      env:
-        ACCESS_TOKEN: "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"
-        REPO_OWNER: "User-Howard"
-        REPO_NAME: "Howard-OJ"
-      run: |
-         ISSUES=$(curl -s -H "Authorization: token $ACCESS_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues")
-          for row in $(echo "${ISSUES}" | jq -r '.[] | @base64'); do
-            _jq() {
-              echo ${row} | base64 --decode | jq -r ${1}
-            }
-            ISSUE_TITLE=$(_jq '.title')
-            folder_path=$(echo "$ISSUE_TITLE" | grep -o '\[.*\]' | tr -d '[]')
-            file_name=$(echo "$ISSUE_TITLE" | awk '{print $2}')
-
-            echo "folder_path = $folder_path"
-            echo "file_name = $file_name"
-
-            if [ -f "$folder_path/$file_name.cpp" ] || [ -f "$folder_path/$file_name.py" ]; then
-                echo "File exists in $folder_path folder."
-                ISSUE_NUMBER=$(_jq '.number')
-                curl -s -X PATCH -H "Authorization: token $ACCESS_TOKEN" -d '{"state":"closed"}' "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER"
-                echo "Closed issue: $ISSUE_TITLE"
-            else
-                echo "File does not exist in $folder_path folder."
-            fi
-          done
-          
     - name: Extract folder path and file name
       id: extract_input
       uses: actions/github-script@v4
