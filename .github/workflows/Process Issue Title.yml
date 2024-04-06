@@ -8,6 +8,27 @@ jobs:
   process_title:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests beautifulsoup4
+
+    - name: Run script to rename issue
+      env:
+        INPUT_ISSUE_TITLE: ${{ github.event.head_commit.message }}
+        INPUT_ISSUE_NUMBER: ${{ github.event.number }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_REPOSITORY: ${{ github.repository }}
+      run: python ./.github/scripts/rename_issue_title.py
+      
     - name: Extract folder path and file name
       id: extract_input
       uses: actions/github-script@v4
