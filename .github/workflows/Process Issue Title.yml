@@ -23,7 +23,7 @@ jobs:
 
     - name: Run script to rename issue
       env:
-        INPUT_ISSUE_TITLE: ${{ github.event.head_commit.message }}
+        INPUT_ISSUE_TITLE: ${{ github.event.issue.title }}
         INPUT_ISSUE_NUMBER: ${{ github.event.number }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_REPOSITORY: ${{ github.repository }}
