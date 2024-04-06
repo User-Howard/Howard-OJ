@@ -25,7 +25,7 @@ jobs:
       env:
         INPUT_ISSUE_TITLE: ${{ github.event.issue.title }}
         INPUT_ISSUE_NUMBER: ${{ github.event.number }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.MODIFY_ISSUE_TOKEN }}
         GITHUB_REPOSITORY: ${{ github.repository }}
       run: python ./.github/scripts/rename_issue_title.py
       
