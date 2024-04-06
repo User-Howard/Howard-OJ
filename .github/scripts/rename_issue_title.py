@@ -48,6 +48,7 @@ if problem_id:
     if problem_title:
         new_title = f"{issue_title}_{problem_title.replace(' ', '_')}"
 print("title:", issue_title)
+print("problem id:", problem_id)
 # 修改问题标题
 if new_title:
     success = modify_issue_title(repo_name, issue_number, new_title)
