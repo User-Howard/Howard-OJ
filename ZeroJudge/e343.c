@@ -2,12 +2,15 @@
 #include <math.h>
 
 
+float roundAt(float value, int pos) {
+    int pow10 = 1;
+    for(int i=0;i<pos;++i) pow10 *= 10;
+    return roundf(value*pow10) / pow10;
+}
 int main() {
-    int N;
-    float M;
-    scanf("%d %f", &N, &M);
-    printf("%.1f\n", round(1.0*N/M/M*10)/10);
-
+    int W;
+    float H;
+    scanf("%d %f", &W, &H);
+    printf("%.1f\n", roundAt(W/H/H, 1));
     return 0;
 }
-// 複習malloc
