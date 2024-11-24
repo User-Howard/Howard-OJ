@@ -5,10 +5,10 @@
 using namespace std;
 
 int M, N, K;
-const int dx[6] = { -1,  0,  1,  1,  0,  -1 };
+const int dx[6] = {-1,  0,  1,  1,  0,  -1};
 const int dy[6] = { 0,   1,  1,  0,  -1, -1 };
 bool inT(const int x, const int y) {
-    return 0<=xand0<=yandx<Mandy<N;
+    return 0<=x and 0<=y and x<M and y<N;
 }
 int main() {
     cin>>M>>N>>K;
