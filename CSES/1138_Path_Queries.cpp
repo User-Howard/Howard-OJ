@@ -41,11 +41,8 @@ int query(int p) {
 }
 
 signed main(){
-    freopen("err.txt", "w", stderr);
     cin >> N >> Q;
-    for(int i=1;i<=N;++i) {
-        cin >> V[i];
-    }
+    for(int i=1;i<=N;++i) cin >> V[i];
     for(int i=1;i<N;++i) {
         int a, b;
         cin >> a >> b;
@@ -69,16 +66,6 @@ signed main(){
             cin >> s;
             cout << query(in[s]) << '\n';
         }
-        /*
-        for(int i=1;i<=N;++i) {
-            cerr << i << ": " << in[i] << ' ' << out[i] << ' ' << query(in[i]) << '\n';
-        }
-        for(int i=1;i<=10;++i) {
-            cerr << query(i) << '\t';
-        }
-        cerr << '\n';
-        cerr << '\n';
-        */
     }
  
     return 0;
