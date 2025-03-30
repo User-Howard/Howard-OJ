@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
+        
       - name: Run script to close issues
         env:
           ACCESS_TOKEN: ${{ secrets.MODIFY_ISSUE_TOKEN }}
@@ -23,6 +23,11 @@ jobs:
           REPO_NAME: "Howard-OJ"
         run: |
           ISSUES=$(curl -s -H "Authorization: token $ACCESS_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues")
+          
+          # Debugging step: Print the raw response
+          echo "Raw response: $ISSUES"
+          
+          # Validate the JSON response
           if echo "$ISSUES" | jq empty; then
             for row in $(echo "${ISSUES}" | jq -r '.[] | @base64'); do
               _jq() {
