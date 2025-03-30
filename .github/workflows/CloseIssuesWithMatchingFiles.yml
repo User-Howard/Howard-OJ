@@ -7,7 +7,6 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
   workflow_dispatch:
 
 jobs:
@@ -19,11 +18,11 @@ jobs:
         
       - name: Run script to close issues
         env:
-          ACCESS_TOKEN: "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"
+          ACCESS_TOKEN: ${{ secrets.MODIFY_ISSUE_TOKEN }}
           REPO_OWNER: "User-Howard"
           REPO_NAME: "Howard-OJ"
         run: |
-         ISSUES=$(curl -s -H "Authorization: token $ACCESS_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues")
+          ISSUES=$(curl -s -H "Authorization: token $ACCESS_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues")
           for row in $(echo "${ISSUES}" | jq -r '.[] | @base64'); do
             _jq() {
               echo ${row} | base64 --decode | jq -r ${1}
@@ -36,11 +35,11 @@ jobs:
             echo "file_name = $file_name"
 
             if [ -f "$folder_path/$file_name.cpp" ] || [ -f "$folder_path/$file_name.py" ]; then
-                echo "File exists in $folder_path folder."
-                ISSUE_NUMBER=$(_jq '.number')
-                curl -s -X PATCH -H "Authorization: token $ACCESS_TOKEN" -d '{"state":"closed"}' "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER"
-                echo "Closed issue: $ISSUE_TITLE"
+              echo "File exists in $folder_path folder."
+              ISSUE_NUMBER=$(_jq '.number')
+              curl -s -X PATCH -H "Authorization: token $ACCESS_TOKEN" -d '{"state":"closed"}' "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER"
+              echo "Closed issue: $ISSUE_TITLE"
             else
-                echo "File does not exist in $folder_path folder."
+              echo "File does not exist in $folder_path folder."
             fi
           done
