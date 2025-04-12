@@ -13,15 +13,13 @@ ll f(int t){ // t秒內最多可以跑多遠？
 	}
 	return max_len;
 }
-int binary_search(int l, int r) { // [l, r)
-	// cerr << l << ' ' << r << '\n';
+int binary_search(int l, int r) {
 	while(r-l > 1) {
 		int mid = (r + l) / 2;
-		if(f(mid) < S) l = mid+1;
+		if(f(mid) < S) l = mid;
 		else r = mid;
-		// cerr << l << ' ' << r << '\n';
 	}
-	return l;
+	return r;
 }
 int main(){
 	ios::sync_with_stdio(0); cin.tie(0);
@@ -33,7 +31,7 @@ int main(){
 		cout << ans << '\n';
 	} else {
 		cout << "Yes" << '\n';
-		cout << binary_search(0, T+1) << '\n';
+		cout << binary_search(0, T) << '\n';
 	}
 	return 0;
 }
