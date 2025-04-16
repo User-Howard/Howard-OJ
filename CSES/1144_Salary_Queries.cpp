@@ -1,10 +1,10 @@
 #include <iostream>
-#include <unordered_map>
-#include <set>
+#include <algorithm>
 #include <tuple>
 #include <vector>
 using namespace std;
 #define lowbit(x) (x&-x)
+#define all(x) x.begin(),x.end()
 #define int int64_t
  
 const int MAX_N = 6e5 + 10;
@@ -28,10 +28,10 @@ signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     int N, M;
     cin >> N >> M;
-    set<int> st;
+    vector<int> st = {0};
     for(int i=1;i<=N;++i) {
         cin >> Nums[i];
-        st.insert(Nums[i]);
+        st.push_back(Nums[i]);
     }
     vector<tuple<char, int, int> > queries;
     for(int i=0;i<M;++i) {
@@ -40,27 +40,33 @@ signed main() {
         cin >> op >> a >> b;
         queries.push_back({op, a, b});
         if(op=='!') {
-            st.insert(b);
+            st.push_back(b);
         }
     }
-    unordered_map<int, int> val2idx;
-    st.insert(0);
-    st.insert(1e9+10);
-    for(int i: st) {
-        static int idx = 1;
-        val2idx[i] = idx++;
-    }
+    sort(all(st));
+    st.erase(unique(all(st)), st.end());
+    auto getLowerIndex = [&st](int x) {
+        return distance(st.begin(), lower_bound(all(st), x));
+    };
+    auto getPrevIndex = [&st](int x) {
+        return distance(st.begin(), prev(upper_bound(all(st), x)));
+    };
     for(int i=1;i<=N;++i) {
-        update(val2idx[Nums[i]], 1);
+        update(getLowerIndex(Nums[i]), 1);
     }
     for(const auto& [op, a, b] : queries) {
         if(op == '!') {
-            update(val2idx[Nums[a]], -1);
+            // cerr << Nums[a] << ":A " << getLowerIndex(Nums[a]) << '\n';
+            update(getLowerIndex(Nums[a]), -1);
             Nums[a] = b;
-            update(val2idx[Nums[a]], 1);
+            // cerr << Nums[a] << ":B " << getLowerIndex(Nums[a]) << '\n';
+            update(getLowerIndex(Nums[a]), 1);
         } else {
-            cout << query(val2idx[*prev(st.upper_bound(b))]) - query(val2idx[*prev(st.lower_bound(a))]) << '\n';
+            // cerr << a << ":C " << getLowerIndex(a)-1 << '\n';
+            // cerr << b << ":D " << getPrevIndex(b) << '\n';
+            cout << query(getPrevIndex(b)) - query(getLowerIndex(a)-1) << '\n';
         }
     }
+
     return 0;
 }
