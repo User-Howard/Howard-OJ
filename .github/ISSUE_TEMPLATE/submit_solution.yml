@@ -1,0 +1,99 @@
+name: Solution Submission
+description: Submit a solution to the OJ repository
+title: "[Solution] "
+labels: ["solution"]
+body:
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - LeetCode
+        - CodeForces
+        - CSES
+        - Kattis
+        - APCS
+        - NPSC
+        - POJ
+        - TIOJ
+        - SEOJ
+        - UVA
+        - VJudge
+        - ZeroJudge
+        - YTP 少年圖靈計畫
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: problem_id
+    attributes:
+      label: Problem ID
+      placeholder: ex. 1234
+    validations:
+      required: true
+
+  - type: input
+    id: problem_title
+    attributes:
+      label: Problem Title
+      placeholder: ex. Two Sum
+    validations:
+      required: true
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Difficulty
+      options:
+        - Easy
+        - Medium
+        - Hard
+        - Unknown
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tags
+    attributes:
+      label: Tags
+      multiple: true
+      options:
+        - Array
+        - String
+        - Hash Map
+        - Two Pointers
+        - Sliding Window
+        - Binary Search
+        - Sorting
+        - Stack / Queue
+        - Linked List
+        - Tree / BST
+        - Graph / BFS / DFS
+        - Dynamic Programming
+        - Greedy
+        - Segment Tree
+        - Divide and Conquer
+        - Math
+        - Bit Manipulation
+        - Backtracking
+        - Other
+    validations:
+      required: false
+
+  - type: textarea
+    id: complexity
+    attributes:
+      label: Complexity Analysis
+      value: |
+        - **TC**: O()
+        - **SC**: O()
+    validations:
+      required: false
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solution Code
+    validations:
+      required: true
