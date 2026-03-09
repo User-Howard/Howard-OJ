@@ -3,10 +3,10 @@
 
 ###### 專門紀錄我的程式資料夾。
 
-`總共完成了 632 個題目。`
+`總共完成了 636 個題目。`
 
 ```
-Howard-OJ -> 632
+Howard-OJ -> 636
   NPSC -> 2
   CodeForces -> 25
     DP I - 練習（346735） -> 3
@@ -18,7 +18,7 @@ Howard-OJ -> 632
     2017pre -> 3
   CSES -> 127
   ZeroJudge -> 228
-  LeetCode -> 21
+  LeetCode -> 25
   UVA -> 23
   POJ -> 15
   APCS -> 44
