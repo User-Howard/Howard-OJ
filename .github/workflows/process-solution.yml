@@ -26,7 +26,7 @@ jobs:
           cache: "pip"
 
       - name: Install dependencies
-        run: pip install -r scripts/requirements.txt
+        run: pip install -r .github/scripts/requirements.txt
 
       - name: Configure git identity
         run: |
@@ -43,7 +43,7 @@ jobs:
           ISSUE_BODY: ${{ github.event.issue.body }}
           REPO_FULL_NAME: ${{ github.repository }}
         run: |
-          python scripts/process_solution.py
+          python .github/scripts/process_solution.py
 
       # Python script 輸出 EXIT_CODE 0 = 成功, 1 = 失敗
       - name: Close issue on success
