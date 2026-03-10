@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int N;
+    vector<string> ans;
+    void solve(const string &s, int l_num, int cnt) {
+        if(l_num<N) {
+            solve(s+'(', l_num+1, cnt+1);
+        }
+        if(cnt>0) {
+            solve(s+')', l_num, cnt-1);
+        }
+        if(l_num==N and cnt==0) {
+            ans.emplace_back(s);
+        }
+    }
+    vector<string> generateParenthesis(int n) {
+        N = n;
+        solve("", 0, 0);
+        return ans;
+    }
+};
