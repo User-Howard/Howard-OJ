@@ -3,7 +3,8 @@ import shutil
 
 def move_files(source_dir):
     """
-    将指定目录下的特定文件移动到另一个指定目录
+    将指定目录下的特定文件移动到另a
+    个指定目录
     """
     # 获取源目录下的所有文件名
     filenames = os.listdir(source_dir)
@@ -12,7 +13,7 @@ def move_files(source_dir):
         # 判断是否是目标文件
         if "readme" not in filename.lower():
             # 构造源文件路径和目标文件路径
-            
+
 
             # 移动文件
             if filename[0:2] == "ZJ":
