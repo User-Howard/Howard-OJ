@@ -33,11 +33,6 @@ print(f"code lines: {len(code.splitlines())}")
 # file_path = resolve_path(platform, problem_id)
 # write and commit...
 
-print('-'*15)
-print(issue_number)
-print(issue_body)
-print('-'*15)
-
 # ── Output ─────────────────────────────────────────────────────────────────
 sys.exit(0)  # 0 = success → issue will be closed
              # 1 = failure → issue stays open, error comment posted
