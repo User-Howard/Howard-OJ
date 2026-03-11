@@ -65,10 +65,18 @@ class Platform(str, Enum):
         return self.value
 
 
+class Difficulty(str, Enum):
+    EASY = "Easy"
+    MEDIUM = "Medium"
+    HARD = "Hard"
+    UNKNOWN = "Unknown"
+
+
 class IssueData(BaseModel):
     platform: Platform
     problem_id: str
     problem_title: str
+    difficulty: Difficulty
     language: Language
     commit_message: str
     solution_code: str
@@ -82,6 +90,7 @@ class IssueData(BaseModel):
         platform = sections.get("Platform")
         problem_id = sections.get("Problem ID")
         problem_title = sections.get("Problem Title")
+        difficulty = sections.get("Difficulty")
         language = sections.get("Language")
         commit_message = sections.get("Commit Message", "")
         solution_code = sections.get("Solution Code")
@@ -99,6 +108,7 @@ class IssueData(BaseModel):
             "platform": platform.strip(),
             "problem_id": problem_id.strip(),
             "problem_title": (problem_title or "").strip(),
+            "difficulty": (difficulty or "Unknown").strip(),
             "language": language.strip(),
             "commit_message": (commit_message or "").strip(),
             "solution_code": solution_code.strip(),
@@ -140,7 +150,7 @@ if file_path.exists():
 file_path.write_text(data.solution_code + "\n")
 
 # ── Output ─────────────────────────────────────────────────────────────────
-msg = data.commit_message or f"feat({data.platform.value}): {data.problem_id} {data.problem_title}"
+msg = data.commit_message or f"{data.difficulty.value.lower()}({data.platform.value}): {data.problem_id} {data.problem_title}"
 if settings.github_output:
     with open(settings.github_output, "a") as f:
         f.write(f"commit_message={msg}\n")

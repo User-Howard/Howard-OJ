@@ -47,7 +47,6 @@ body:
         - Easy
         - Medium
         - Hard
-        - Unknown
     validations:
       required: true
 
