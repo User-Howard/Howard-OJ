@@ -45,6 +45,12 @@ jobs:
         run: |
           python .github/scripts/process_solution.py
 
+      - name: Commit & push solution
+        run: |
+          git add -A
+          git commit -m "feat: add ${{ github.event.issue.title }} (#${{ github.event.issue.number }})"
+          git push
+
       # Python script 輸出 EXIT_CODE 0 = 成功, 1 = 失敗
       - name: Close issue on success
         if: success()
