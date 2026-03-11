@@ -13,8 +13,8 @@ class Settings(BaseSettings):
     issue_number: str = Field(default=...)
     issue_body: str = Field(default=...)
     repo_full_name: str = Field(default=...)
-    gh_token: str = Field(default=..., alias="GITHUB_TOKEN")
-    anthropic_key: str = Field(default=..., alias="ANTHROPIC_API_KEY")
+    gh_token: str = Field(default=..., validation_alias="GITHUB_TOKEN")
+    anthropic_key: str = Field(default=..., validation_alias="ANTHROPIC_API_KEY")
 
     agent_model: str = Field(default="gateway/openai:gpt-4o-mini")
 
