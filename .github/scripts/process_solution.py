@@ -69,7 +69,6 @@ class Difficulty(str, Enum):
     EASY = "Easy"
     MEDIUM = "Medium"
     HARD = "Hard"
-    UNKNOWN = "Unknown"
 
 
 class IssueData(BaseModel):
@@ -147,7 +146,7 @@ if file_path.exists():
 
 
 # ── Write file ────────────────────────────────────────────────────────────
-file_path.write_text(data.solution_code + "\n")
+file_path.write_text(data.solution_code + "\n\n")
 
 # ── Output ─────────────────────────────────────────────────────────────────
 msg = data.commit_message or f"{data.difficulty.value.lower()}({data.platform.value}): {data.problem_id} {data.problem_title}"
