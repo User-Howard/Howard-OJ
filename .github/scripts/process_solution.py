@@ -1,37 +1,137 @@
 import os
 import re
 import sys
+from enum import Enum
+
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import Field, field_validator, model_validator, BaseModel
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent.parent.parent
+
+class Settings(BaseSettings):
+    issue_number: str = Field(default=...)
+    issue_body: str = Field(default=...)
+    repo_full_name: str = Field(default=...)
+    gh_token: str = Field(default=...)
+    anthropic_key: str = Field(default=...)
+
+    agent_model: str = Field(default="gateway/openai:gpt-4o-mini")
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8"
+    )
+    @field_validator("issue_body")
+    def fix_newlines(cls, v):
+        return v.replace("\\n", "\n")
+
+class Language(str, Enum):
+    CPP = "C++"
+    PYTHON = "Python"
+    RUST = "Rust"
+    C = "C"
+    SWIFT = "Swift"
+
+    @property
+    def extension(self) -> str:
+        return {
+            Language.CPP: ".cpp",
+            Language.PYTHON: ".py",
+            Language.RUST: ".rs",
+            Language.C: ".c",
+            Language.SWIFT: ".swift",
+        }[self]
+
+class Platform(str, Enum):
+    LEETCODE = "LeetCode"
+    CODEFORCES = "CodeForces"
+    CSES = "CSES"
+    KATTIS = "Kattis"
+    APCS = "APCS"
+    NPSC = "NPSC"
+    POJ = "POJ"
+    TIOJ = "TIOJ"
+    SEOJ = "SEOJ"
+    UVA = "UVA"
+    VJUDGE = "VJudge"
+    ZEROJUDGE = "ZeroJudge"
+
+    @property
+    def directory(self) -> str:
+        return self.value
 
 
-# ── Input ──────────────────────────────────────────────────────────────────
-issue_number   = os.environ["ISSUE_NUMBER"]
-issue_body     = os.environ["ISSUE_BODY"]
-repo_full_name = os.environ["REPO_FULL_NAME"]
-gh_token       = os.environ["GITHUB_TOKEN"]
-anthropic_key  = os.environ["ANTHROPIC_API_KEY"]
+class IssueData(BaseModel):
+    platform: Platform
+    problem_id: str
+    problem_title: str
+    language: Language
+    solution_code: str
+
+    @model_validator(mode="before")
+    def parse_issue(cls, values: str):
+        sections = dict(
+            re.findall(r"###\s*(.*?)\n+(.*?)(?=\n###|\Z)", values, re.DOTALL)
+        )
+
+        platform = sections.get("Platform")
+        problem_id = sections.get("Problem ID")
+        problem_title = sections.get("Problem Title")
+        language = sections.get("Language")
+        solution_code = sections.get("Solution Code")
+
+        if not platform:
+            raise ValueError("Missing 'Platform' in issue body")
+        if not problem_id or '#' in problem_id:
+            raise ValueError("Missing 'Problem ID' in issue body")
+        if not language:
+            raise ValueError("Missing 'Language' in issue body")
+        if solution_code is None:
+            raise ValueError("Missing 'Solution Code' in issue body")
+
+        return {
+            "platform": platform.strip(),
+            "problem_id": problem_id.strip(),
+            "problem_title": (problem_title or "").strip(),
+            "language": language.strip(),
+            "solution_code": solution_code.strip(),
+        }
+
+    def file_name(self) -> str:
+        ext = self.language.extension
+        match self.platform:
+            case Platform.LEETCODE:
+                if self.problem_title:
+                    title = self.problem_title.replace(" ", "_")
+                    return f"{self.problem_id}_{title}{ext}"
+                return f"{self.problem_id}{ext}"
+            case Platform.CSES:
+                return f"{self.problem_id}{ext}"
+            case Platform.APCS:
+                return f"{self.problem_id}{ext}"
+            case _:
+                return f"{self.problem_id}{ext}"
 
 
-# ── Parse issue body ────────────────────────────────────────────────────────
-def extract(body: str, label: str) -> str:
-    m = re.search(rf"### {label}\s*\n(.+?)(?=\n###|\Z)", body, re.DOTALL)
-    return m.group(1).strip() if m else ""
+settings = Settings()
 
-platform   = extract(issue_body, "Platform")
-problem_id = extract(issue_body, "Problem ID")
-code       = extract(issue_body, "Solution Code")
+data = IssueData.model_validate(settings.issue_body)
 
-print(f"platform:   {platform}")
-print(f"problem_id: {problem_id}")
-print(f"code lines: {len(code.splitlines())}")
+
+platform_dir = BASE_DIR / data.platform.directory
+file_path = platform_dir / data.file_name()
+
+if file_path.exists():
+    raise FileExistsError(f"Solution already exists: {file_path}")
 
 
 # ── TODO: AI analysis (pydantic-ai) ────────────────────────────────────────
 # tags, tc, sc = analyze(code)
 
 
-# ── TODO: Write file + git commit ──────────────────────────────────────────
-# file_path = resolve_path(platform, problem_id)
-# write and commit...
+# ── Write file ────────────────────────────────────────────────────────────
+file_path.write_text(data.solution_code + "\n")
 
 # ── Output ─────────────────────────────────────────────────────────────────
 sys.exit(0)  # 0 = success → issue will be closed

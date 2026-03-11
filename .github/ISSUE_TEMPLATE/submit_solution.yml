@@ -20,8 +20,6 @@ body:
         - UVA
         - VJudge
         - ZeroJudge
-        - YTP 少年圖靈計畫
-        - Other
     validations:
       required: true
 
@@ -39,7 +37,7 @@ body:
       label: Problem Title
       placeholder: ex. Two Sum
     validations:
-      required: true
+      required: false
 
   - type: dropdown
     id: difficulty
@@ -80,6 +78,19 @@ body:
         - Other
     validations:
       required: false
+
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options:
+        - C++
+        - Python
+        - Rust
+        - C
+        - Swift
+    validations:
+      required: true
 
   - type: textarea
     id: complexity
