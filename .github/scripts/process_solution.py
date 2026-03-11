@@ -3,6 +3,8 @@ import re
 import sys
 from enum import Enum
 
+from typing import Optional
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field, field_validator, model_validator, BaseModel
 from pathlib import Path
@@ -15,6 +17,7 @@ class Settings(BaseSettings):
     repo_full_name: str = Field(default=...)
     gh_token: str = Field(default=..., validation_alias="GITHUB_TOKEN")
     anthropic_key: str = Field(default=..., validation_alias="ANTHROPIC_API_KEY")
+    github_output: Optional[str] = Field(default=None)
 
     agent_model: str = Field(default="gateway/openai:gpt-4o-mini")
 
@@ -67,6 +70,7 @@ class IssueData(BaseModel):
     problem_id: str
     problem_title: str
     language: Language
+    commit_message: str
     solution_code: str
 
     @model_validator(mode="before")
@@ -79,6 +83,7 @@ class IssueData(BaseModel):
         problem_id = sections.get("Problem ID")
         problem_title = sections.get("Problem Title")
         language = sections.get("Language")
+        commit_message = sections.get("Commit Message", "")
         solution_code = sections.get("Solution Code")
 
         if not platform:
@@ -95,6 +100,7 @@ class IssueData(BaseModel):
             "problem_id": problem_id.strip(),
             "problem_title": (problem_title or "").strip(),
             "language": language.strip(),
+            "commit_message": (commit_message or "").strip(),
             "solution_code": solution_code.strip(),
         }
 
@@ -134,5 +140,10 @@ if file_path.exists():
 file_path.write_text(data.solution_code + "\n")
 
 # ── Output ─────────────────────────────────────────────────────────────────
+msg = data.commit_message or f"feat({data.platform.value}): {data.problem_id} {data.problem_title}"
+if settings.github_output:
+    with open(settings.github_output, "a") as f:
+        f.write(f"commit_message={msg}\n")
+
 sys.exit(0)  # 0 = success → issue will be closed
              # 1 = failure → issue stays open, error comment posted

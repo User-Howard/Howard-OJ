@@ -92,13 +92,11 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: complexity
+  - type: input
+    id: commit_message
     attributes:
-      label: Complexity Analysis
-      value: |
-        - **TC**: O()
-        - **SC**: O()
+      label: Commit Message
+      placeholder: ex. solve Two Sum with hash map
     validations:
       required: false
 

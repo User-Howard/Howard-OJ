@@ -48,7 +48,7 @@ jobs:
       - name: Commit & push solution
         run: |
           git add -A
-          git commit -m "feat: add ${{ github.event.issue.title }} (#${{ github.event.issue.number }})"
+          git commit -m "${{ steps.processor.outputs.commit_message }}"
           git push
 
       # Python script 輸出 EXIT_CODE 0 = 成功, 1 = 失敗
