@@ -1,25 +1,18 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
-        int ptr = 0;
-        int step = bit_floor(size(nums));
-        while(step) {
-            if(ptr+step < ssize(nums) and nums[0] < nums[ptr+step])
-                ptr += step;
-            step >>= 1;
+        int pivot = 0;
+        for(int step = bit_floor(size(nums)); step; step >>= 1) {
+            if(pivot+step < ssize(nums) and nums[0] < nums[pivot+step])
+                pivot += step;
         }
+        span<int> view(nums);
         vector<int>::iterator search_begin, search_end;
-        if(nums[0]<=target) {
-            search_begin = nums.begin();
-            search_end = next(nums.begin(), ptr+1);
-        } else {
-            search_begin = next(nums.begin(), ptr+1);
-            search_end = nums.end();
-        }
-        if(auto result = lower_bound(search_begin, search_end, target); result != search_end and *result==target) {
-            return distance(nums.begin(), result);
-        } else {
+        auto range = (nums[0]<=target) ? view.first(pivot + 1) : view.subspan(pivot + 1);
+        auto result = std::ranges::lower_bound(range, target);
+        if(result == range.end() or *result!=target) {
             return -1;
         }
+        return result - view.begin();
     }
 };
