@@ -1,32 +1,25 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
-        int fst = nums.front();
-        bool at_left = (fst <=target);
-        int l=0, r=nums.size();
-        while(r-l>1) {
-            int mid = (r+l) / 2;
-            if(at_left) {
-                if(nums[mid] < fst or target<nums[mid]) {
-                    r = mid;
-                } else {
-                    l = mid;
-                }
-            } else {
-                if(nums[mid] > fst or nums[mid] < target) {
-                    l = mid;
-                } else {
-                    r = mid;
-                }
-            }
+        int ptr = 0;
+        int step = bit_floor(size(nums));
+        while(step) {
+            if(ptr+step < ssize(nums) and nums[0] < nums[ptr+step])
+                ptr += step;
+            step >>= 1;
         }
-        if(nums[l]==target) {
-            return l;
-        } else if(r < nums.size() and nums[r]==target) {
-            return r;
+        vector<int>::iterator search_begin, search_end;
+        if(nums[0]<=target) {
+            search_begin = nums.begin();
+            search_end = next(nums.begin(), ptr+1);
+        } else {
+            search_begin = next(nums.begin(), ptr+1);
+            search_end = nums.end();
+        }
+        if(auto result = lower_bound(search_begin, search_end, target); result != search_end and *result==target) {
+            return distance(nums.begin(), result);
         } else {
             return -1;
         }
     }
 };
-
