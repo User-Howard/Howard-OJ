@@ -3,10 +3,10 @@
 
 ###### 專門紀錄我的程式資料夾。
 
-`總共完成了 683 個題目。`
+`總共完成了 684 個題目。`
 
 ```
-Howard-OJ -> 683
+Howard-OJ -> 684
   UVA -> 25
   SEOJ -> 44
     NA -> 4
@@ -27,7 +27,7 @@ Howard-OJ -> 683
     2021 11 -> 2
     2020 10 -> 4
   TIOJ -> 31
-  LeetCode -> 63
+  LeetCode -> 64
   YTP少年圖靈計畫 -> 8
     2017pre -> 3
     2020pre -> 5
@@ -43,5 +43,5 @@ Howard-OJ -> 683
   ZeroJudge -> 228
   NPSC -> 2
 ```
-`最近更新日期：Sunday, October 11, 2026`
+`最近更新日期：Tuesday, October 13, 2026`
 
