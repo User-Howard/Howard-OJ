@@ -3,10 +3,10 @@
 
 ###### 專門紀錄我的程式資料夾。
 
-`總共完成了 685 個題目。`
+`總共完成了 686 個題目。`
 
 ```
-Howard-OJ -> 685
+Howard-OJ -> 686
   CodeForces -> 25
     基礎演算法 II - 練習（344399） -> 2
     110 師大附中／延平中學 競技程式讀書會 模擬競賽 III  -> 2
@@ -32,7 +32,7 @@ Howard-OJ -> 685
     2016 10 -> 4
     2024 01 -> 3
   POJ -> 15
-  LeetCode -> 65
+  LeetCode -> 66
   CSES -> 133
   SEOJ -> 44
     NA -> 4
@@ -43,5 +43,5 @@ Howard-OJ -> 685
   VJudge -> 8
   ZeroJudge -> 228
 ```
-`最近更新日期：Monday, November 02, 2026`
+`最近更新日期：Tuesday, November 03, 2026`
 
