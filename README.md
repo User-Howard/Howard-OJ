@@ -3,13 +3,13 @@
 
 ###### 專門紀錄我的程式資料夾。
 
-`總共完成了 693 個題目。`
+`總共完成了 694 個題目。`
 
 ```
-Howard-OJ -> 693
+Howard-OJ -> 694
   SEOJ -> 44
     NA -> 4
-  CSES -> 133
+  CSES -> 134
   POJ -> 15
   LeetCode -> 72
   ZeroJudge -> 228
@@ -43,5 +43,5 @@ Howard-OJ -> 693
   UVA -> 25
   TODO -> 1
 ```
-`最近更新日期：Tuesday, November 17, 2026`
+`最近更新日期：Wednesday, November 18, 2026`
 
