@@ -3,10 +3,10 @@
 
 ###### 專門紀錄我的程式資料夾。
 
-`總共完成了 697 個題目。`
+`總共完成了 698 個題目。`
 
 ```
-Howard-OJ -> 697
+Howard-OJ -> 698
   SEOJ -> 44
     NA -> 4
   POJ -> 15
@@ -41,7 +41,7 @@ Howard-OJ -> 697
     110 師大附中／延平中學 競技程式讀書會 模擬競賽 III  -> 2
   VJudge -> 8
   Kattis -> 54
-  LeetCode -> 74
+  LeetCode -> 75
 ```
 `最近更新日期：Tuesday, November 24, 2026`
 
